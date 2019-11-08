@@ -1,0 +1,379 @@
+<!--
+ * @陕西唐远
+ * @文件名: 
+ * @作者: 李浩源
+ * @Git: e
+ * @Date: 2019-10-24 14:12:00
+ * @描述: 
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>人力资源管理系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+    <!-- <link rel="stylesheet" href="../../../Widget/layui-calender/css/date.css"> -->
+    <style>
+        #calenderBox {
+            height: 360px;
+        }
+        
+        #calender .layui-laydate-main {
+            width: auto;
+        }
+        
+        #calender .layui-laydate-main .layui-laydate-content table {
+            width: 100%;
+        }
+        
+        #notice {
+            height: 185px;
+        }
+        
+        .nav-list,
+        .right-top {
+            margin-bottom: 20px;
+        }
+        
+        .nav-list .nav-list-part {
+            width: 25%;
+            float: left;
+            background-color: #FFFFFF;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        
+        .nav-list .nav-list-part>div {
+            height: 76px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .list-part1 {
+            width: 100%;
+            background: url(./img/home_1.png) 100% 100% no-repeat;
+        }
+        
+        .list-part2 {
+            background: url(./img/home_2.png) 100% 100% no-repeat;
+        }
+        
+        .list-part3 {
+            background: url(./img/home_3.png) 100% 100% no-repeat;
+        }
+        
+        .list-part4 {
+            background: url(./img/home_4.png) 100% 100% no-repeat;
+        }
+        
+        .list-part-md1 {
+            width: 45%;
+            color: white;
+            font-size: 34px;
+            height: 100%;
+            float: left;
+            /*display: inline-block;*/
+            line-height: 70px;
+            font-weight: 500;
+            text-align: center;
+        }
+        
+        .list-part-top1 {
+            width: 55%;
+            /*color:white;*/
+            /*font-size: 18px;*/
+            float: left;
+            /*display: inline-block;*/
+            /*line-height: 35px;*/
+            text-align: left;
+        }
+        
+        .list-part-top1 P:nth-child(1) {
+            padding-left: 10px;
+            line-height: 45px;
+            font-size: 18px;
+        }
+        
+        .list-part-top1 P:nth-child(2) {
+            padding-left: 10px;
+            line-height: 12px;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        body .xul li {
+            /*border-top: 1px solid #EFF1F3;*/
+            border-radius: 7px;
+            padding-top: 10px;
+            padding-left: 10px;
+            margin: 8px;
+            color: #7B8292;
+            background-color: #F9F9FB;
+            box-sizing: border-box;
+        }
+        
+        body .xul li span:nth-child(3) {
+            display: inline-block;
+            width: 30%;
+            text-align: center;
+        }
+        
+        body .xul li span:nth-child(4) {
+            display: inline-block;
+            width: 15%;
+            text-align: center;
+            color: /*padding: 3px 0px;*/
+            /*border-radius: 5px;*/
+            /*background-color: #FE6080;*/
+            /*color: white;*/
+        }
+        
+        body .xul li span:nth-child(2) {
+            display: inline-block;
+            width: 50%;
+            text-align: center;
+        }
+        
+        .main {
+            background-color: #F3F5F6;
+        }
+        
+        .layui-fluids {
+            width: 50%;
+            float: left;
+            box-sizing: border-box;
+        }
+        
+        .content-btm {
+            height: 270px;
+        }
+        
+        .content-left {
+            width: 60%;
+            float: left;
+            background-color: #F3F5F6;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        
+        .content-right {
+            width: 40%;
+            float: left;
+            background-color: #F3F5F6;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+        
+        .right-bottom {
+            /*padding:10px 10px;*/
+            box-sizing: border-box;
+        }
+        
+        .listcontent {
+            height: 400px;
+        }
+        
+        .layui-elip {
+            position: relative;
+        }
+        
+        .layui-elip i {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            border-radius: 12px;
+            position: absolute;
+            top: 6px;
+            left: 10px;
+            line-height: 25px;
+            color: #FFFFFF;
+            text-align: center;
+        }
+        
+        .layadmin-dataview {
+            height: 290px!important;
+        }
+
+        .proposal:hover{
+            color: #436CBD;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layui-fluid" style="margin-bottom:20px;">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md8">
+                <div class="layui-row layui-col-space15">
+
+       <!-- 左侧 -->
+                    <div class="layui-col-md12">
+                        <!-- 顶部数据统计 -->
+                        <div class="layui-card">
+                            <div class="layui-card-header ">数据统计</div>
+                            <div class="layui-card-body">
+                                <ul class="nav-list ue-clear layui-clear">
+                                    <li class="nav-list-part ">
+                                        <div class="list-part1">
+                                            <p class="list-part-md1" id="all">0</p>
+
+                                            <div class="list-part-top1">
+                                                <p style="color:#50ADF0;">员工总数</p>
+                                                <p style="padding-left:12px;">All satff</p>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="nav-list-part ">
+                                        <div class="list-part2">
+                                            <p class="list-part-md1" id="dtj">0</p>
+
+                                            <div class="list-part-top1">
+                                                <p style="color:#ABD245">在职员工</p>
+                                                <p style="padding-left:2px;">Serving staff</p>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="nav-list-part ">
+                                        <div class="list-part3">
+                                            <p class="list-part-md1" id="shz">0</p>
+                                            <div class="list-part-top1">
+                                                <p style="color:#ECBE40">编制内员工</p>
+                                                <p>staffing</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="nav-list-part ">
+                                        <div class="list-part4">
+                                            <p class="list-part-md1" id="ylx">0</p>
+                                            <div class="list-part-top1">
+                                                <p style="color:#89A0E6">离职员工</p>
+                                                <p>off-staff</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    <!-- 职称统计 -->
+                        <div class="layui-card">
+                            <div class="layui-card-header">职称统计</div>
+                            <div class="layui-card-body">
+                                <div id="postionState2" style="width:100%;height:300px;"></div>
+                            </div>
+                        </div>
+                    <!-- 薪资统计 -->
+                        <div class="layui-card">
+                            <div class="layui-card-header">
+                                薪资统计
+                                <div class="layui-input-inline" style="float:right;">
+                                    <label class="layui-form-label" style="line-height:25px">统计时间:</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="moneyType" lay-verify="date" placeholder="yyyy-MM" autocomplete="off" class="layui-input" lay-key="1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-card-body">
+
+                                <div id="moneyState" style="width:100%;height:270px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- 右侧-->
+            <div class="layui-col-md4">
+                <div class="">
+                    <!-- 通知公告 -->
+                    <div class="layui-col-md12 layui-card">
+                        <div class="layui-card-header ">通知公告</div>
+                        <div class="layui-card-body" style="height:218px;overflow: hidden;">
+                            <ul id="informList">
+                       
+                            </ul>
+                        </div>
+                    </div>
+               
+
+                    <div style="clear:both"></div>
+                </div>
+                <!-- 职位统计 -->
+                <div class="layui-card">
+                    <div class="layui-card-header">职位统计</div>
+                    <div class="layui-card-body">
+                        <div id="postionState" style="width:100%;height:200px;"></div>
+                    </div>
+                </div>
+
+
+             <!-- 数据统计 -->
+                <div class="layui-card">
+                    <div class="layui-card">
+                        <div class="layui-card-header">数据统计</div>
+                        <div class="layui-card-body" style="padding:0">
+
+                            <div class="layui-carousel layadmin-carousel layadmin-dataview" style="height:250px!important;" data-anim="fade" lay-filter="">
+                                <div carousel-item>
+                                    <div class=" layui-show">
+                                        <div class="layui-card-body layadmin-takerates">
+                                            <div id="Degree" style="width:500px;height:275px;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="layui-card-body layadmin-takerates">
+                                            <div id="sex" style="width:500px;height:275px;"></div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="">
+                                        <div class="layui-card-body layadmin-takerates">
+                                            <div id="age" style="width:500px;height:275px;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="layui-card-body layadmin-takerates">
+                                            <div id="EntryTime" style="width:500px;height:275px;"></div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+        
+                </div>
+            </div>
+
+
+
+       
+            <div class="layui-col-md12">
+
+            </div>
+        </div>
+    </div>
+
+    <script src="../../layuiadmin/layui/layui.js"></script>
+    <script src="../../../Widget/layui-calender/layui-calender.js"></script>
+    <script src="../../../Widget/jquery-1.8.3.min.js"></script>
+    <script src="../../../js/SysJS/HrDataManage.js"></script>
+    <!-- <script src="../../../js/SysJS/allSelectJson.js"></script> -->
+    <script src="../../../Widget/echarts-all.js"></script>
+    <script src="../../../js/views/Hr_User/home.js"></script>
+
+    <script>
+    </script>
+</body>
+
+</html>

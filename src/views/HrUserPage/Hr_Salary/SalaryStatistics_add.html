@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>rightCommon</title>
+	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  	<meta name="viewport" content="../width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  	<link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+
+  	<style type="text/css">
+  		.layui-table-tool-self{
+  			position: absolute;
+  			right: 17px;
+    		top: 15px;
+  		}
+  		.layui-table-tool-self>.layui-inline{
+  			position: relative;
+		    /* width: 26px; */
+		    /* height: 26px; */
+		    padding: 5px;
+		    line-height: 16px;
+		    margin-right: 10px;
+		    text-align: center;
+		    color: #333;
+		    border: 1px solid #ccc;
+		    cursor: pointer;
+		    -webkit-transition: .5s all;
+		    transition: .5s all;
+  		}
+  	
+  		.addUserInfo  .layui-input-inline{
+  			width: 150px;
+  		}
+  		.addUserInfo .site-tips{
+  			line-height: 36px;
+		    border-left: 5px solid #009E94;
+		    margin: 15px 0 5px;
+		    padding: 0 10px;
+		    background-color: #f2f2f2;
+  		}
+  		html{
+  			background: #fff;
+  		}
+  		
+  	</style>
+</head>
+<body layadmin-themealias="default">
+	<div id="changePosition" class="layui-fluid">
+		薪资统计
+		<hr>
+		<form class="layui-form" id="TrainAdd" lay-filter="formData">
+			<div id="rowList">
+					<div class="layui-form-item">
+							<div class="layui-block">
+										<label class="layui-form-label">人员姓名</label>
+										<div class="layui-input-block">
+											<select name="userId" lay-verify="required" id="userId" lay-filter="checkUserId" lay-search="">
+											</select>
+										</div>
+								</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-block">
+									<label class="layui-form-label">保险基数</label>
+									<div class="layui-input-block">
+										<input name="baoxianjishu" lay-verify="required|number" id="baoxianjishu" class="layui-input"  lay-filter="tree" lay-search="">
+									</div>
+								</div>
+						</div>
+						<div class="layui-form-item" >
+							<div class="layui-block">
+									<label class="layui-form-label">基本工资</label>
+									<div class="layui-input-block">
+										<input name="jibengongzi" lay-verify="required|number" id="jibengongzi" class="layui-input"  lay-filter="tree" lay-search="">
+									</div>
+								</div>
+							
+						</div>
+						<div class="layui-form-item" >
+							
+								<div class="layui-inline">
+									<label class="layui-form-label">个人养老</label>
+									<div class="layui-input-inline">
+										<input name="gerenyanglao" disabled lay-verify="required|number" id="gerenyanglao" class="layui-input layui-disabled"  lay-filter="tree" lay-search="">
+									</div>
+								</div>
+								<div class="layui-inline">
+									<label class="layui-form-label">个人医疗</label>
+									<div class="layui-input-inline">
+										<input name="gerenyiliao" disabled lay-verify="required|number" id="gerenyiliao" class="layui-input layui-disabled"  lay-filter="tree" lay-search="">
+									</div>
+								</div>
+						</div>
+						<div class="layui-form-item" >
+							<div class="layui-inline">
+									<label class="layui-form-label">个人失业</label>
+									<div class="layui-input-inline">
+										<input name="gerenshiye" disabled lay-verify="required|number" id="gerenshiye" class="layui-input layui-disabled"  lay-filter="tree" lay-search="">
+									</div>
+								</div>
+								<div class="layui-inline">
+									<label class="layui-form-label">住房公积金</label>
+									<div class="layui-input-inline">
+										<input name="gongjijin" lay-verify="required|number" id="gongjijin" class="layui-input layui-disabled" disabled lay-filter="tree" lay-search="">
+									</div>
+								</div>
+								<input type="hidden" name="salaryType" value="1">
+						</div>
+						<div class="layui-form-item" >
+							<div class="layui-block">
+									<label class="layui-form-label">备注</label>
+									<div class="layui-input-block">
+										<input name="remarks" lay-verify="required" id="remarks" class="layui-input"  lay-filter="tree" lay-search="">
+									</div>
+								</div>
+							
+						</div>
+			</div>
+
+				
+			<!-- <div class="layui-form-item" >
+			   <div class="layui-inline">
+			      <label class="layui-form-label">绩效工资</label>
+			      <div class="layui-input-inline">
+			      	<input name="jixiaogongzi" lay-verify="required|number" id="jixiaogongzi" class="layui-input"  lay-filter="tree" lay-search="">
+			      </div>
+			    </div>
+			    <div class="layui-inline">
+			      <label class="layui-form-label">实发工资</label>
+			      <div class="layui-input-inline">
+			      	<input name="" lay-verify="required|number" id="shifa" class="layui-input layui-disabled" disabled lay-filter="tree" lay-search="">
+			      </div>
+			    </div>
+			</div> -->
+			
+			<div class="layui-form-item layui-layout-admin" style="margin-top:20px;">
+			    <div class="layui-input-block">
+			    	<div class="layui-footer" style="left:0px;">
+			    		<button class="layui-btn" id="TrainManageAddBtn" lay-submit=""  lay-filter="SakaryStatisticsBtn">立即提交</button>
+			      		<button type="reset" class="layui-btn layui-btn-primary" onclick="closeWindow()">取消</button>
+			    	</div>
+			    </div>
+			</div>
+			
+		</form>
+	</div>
+</body>
+<!-- 弹出调动 -->
+
+<script src="../../../layuiadmin/layui/layui.js"></script>
+<script src="../../../../js/SysJS/store.min.js"></script>
+<script src="../../../../js/SysJS/HrDataManage.js"></script>
+<script src="../../../../js/views/Hr_Salary/SalaryStatistics_add.js"></script>
+<script type="text/javascript">
+	
+</script>
+</html>

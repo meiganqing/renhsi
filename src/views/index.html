@@ -1,0 +1,444 @@
+<!--
+ * @陕西唐远
+ * @文件名: 
+ * @作者: 李浩源
+ * @Git: e
+ * @Date: 2019-10-24 14:12:00
+ * @描述: 
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <title>人力资源管理系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../layuiadmin/style/admin.css" media="all">
+    <script src="../../lib/js/jquery-1.8.3.min.js"></script>
+    <script src="../layuiadmin/layui/layui.js"></script>
+    <script src="../../js/SysJS/store.min.js"></script>
+    <script src="../../js/SysJS/HrDataManage.js"></script>
+    <script src="../../js/SysJS/limit.js"></script>
+    <script src="../../js/views/Hr_User/index.js"></script>
+    <style>
+        .layui-layout-admin .layui-footer {
+            position: fixed;
+            left: 200px;
+            right: 0;
+            bottom: 0;
+            /*height: 44px;*/
+            /*line-height: 44px;*/
+            padding: 0 15px 0 30px;
+            background-color: #eee;
+            height: 35px;
+            line-height: 35px;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+        
+        .layui-layout-admin .layui-side {
+            top: 50px;
+        }
+        
+        .layui-side-menu .layui-nav {
+            margin-top: 0px;
+        }
+        
+        .list-flexible {
+            height: 40px;
+            line-height: 40px;
+            color: #FFFFFF;
+            text-align: center;
+            background-color: #2d5bb6;
+        }
+        
+        .layadmin-side-shrink .layui-layout-admin .list-flexible {
+            width: 60px;
+        }
+        
+        .layui-layout-admin .layui-header .layui-nav .layui-nav-more {
+            color: #FFFFFF !important;
+            border-top-color: #fff;
+        }
+        
+        .layui-layout-admin .layui-header .layui-nav .layui-nav-mored {
+            border-color: transparent;
+            border-bottom-color: #FFFFFF;
+        }
+        
+        .layui-nav-itemed>.layui-nav-child {
+            background-color: #2d5bb6 !important;
+        }
+        
+        .layui-nav-tree .layui-nav-bar {
+            background-color: #2d5bb6;
+        }
+        
+        .refresh {
+            width: 3%;
+            display: inline-block;
+            text-align: center;
+            background: #fff;
+            z-index: 99999;
+            position: absolute;
+            margin-top: -1px;
+            border-right: 1px solid #f6f6f6;
+        }
+        
+        .layadmin-iframe {
+            height: 96%;
+        }
+    </style>
+
+</head>
+
+<body class="layui-layout-body">
+
+    <div id="LAY_app">
+        <div class="layui-layout layui-layout-admin">
+            <div class="layui-header" id="indexbj" style="background: url(../../Widget/indexImg/top.png);height: 70px;line-height:70px;">
+                <!-- 头部区域 -->
+                <img id="index_logo" src="../../Widget/indexImg/LOGO.png" style="height:80%; margin:0 20px;">
+                <!-- <ul class="layui-nav layui-layout-left    " style="left:0px">
+                    <li class="layui-nav-item layadmin-flexible" lay-unselect>
+			          <a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
+			            <i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
+			          </a>
+			        </li>
+                    <li class="layui-nav-item    -xs" lay-unselect>
+                        <a href="http://www.layui.com/admin/" target="_blank" title="前台">
+                            <i class="layui-icon layui-icon-website"></i>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item" lay-unselect>
+                        <a href="javascript:;" layadmin-event="refresh" title="刷新">
+                            <i class="layui-icon layui-icon-refresh-3"></i>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item    -xs" lay-unselect>
+                        <input type="text" placeholder="搜索..." autocomplete="off" class="layui-input layui-input-search" layadmin-event="serach" lay-action="template/search.html?keywords=">
+                    </li>
+                </ul> -->
+                <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right" style="margin-right:50px;">
+
+                    <!-- <li class="layui-nav-item " lay-unselect>
+				          <a lay-href="app/message/index.html" layadmin-event="message" lay-text="消息中心">
+				            <i class="layui-icon layui-icon-notice"></i>
+				
+				            <span class="layui-badge-dot"></span>
+				          </a>
+				        </li>
+				        <li class="layui-nav-item    -xs" lay-unselect>
+				          <a href="javascript:;" layadmin-event="theme">
+				            <i class="layui-icon layui-icon-theme"></i>
+				          </a>
+				        </li>
+				        <li class="layui-nav-item    -xs" lay-unselect>
+				          <a href="javascript:;" layadmin-event="note">
+				            <i class="layui-icon layui-icon-note"></i>
+				          </a>
+				        </li>
+				        <li class="layui-nav-item    -xs" lay-unselect>
+				          <a href="javascript:;" layadmin-event="fullscreen">
+				            <i class="layui-icon layui-icon-screen-full"></i>
+				          </a>
+				        </li> -->
+
+                    <li class="layui-nav-item" lay-unselect>
+                        <a href="javascript:;">
+                            <span id="userName" style="margin-right: 5px;font-size: 18px;color: #fff;"></span>
+                            <!--<cite>贤心</cite>-->
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="/SYBGGL/index_gr.html?t=3"><i class="fa fa-user" style="margin-right:6px;"></i><span>个人系统</span></a>
+                            </dd>
+
+                            <dd>
+                                <a href="/SYCWGL/finance_index.html?t=7"><i class="fa fa-money" style="margin-right:6px;"></i><span>财务系统</span></a>
+                            </dd>
+                            <dd>
+                                <a href="/SYXMGL/index.html?t=1"><i class="fa fa-sitemap" style="margin-right:6px;"></i><span>项目管理系统</span></a>
+                            </dd>
+
+                            <dd>
+                                <a href="/SYDAGL/index_zl.html?t=4"><i class="fa fa-file-archive-o" style="margin-right:6px;"></i><span>档案管理系统</span></a>
+                            </dd>
+                            <dd>
+                                <a href="/SYYHGL/setting_index.html?t=8"><i class="fa fa-warning" style="margin-right:6px;"></i><span>安防系统</span></a>
+                            </dd>
+                            <dd>
+                                <a href="/SYWWBH/index.html"><i class="fa fa-server" style="margin-right:6px;"></i><span>文保系统</span></a>
+                            </dd>
+
+                            <dd>
+                                <a href="/SYKFGL/chooseStorage.html"><i class="fa fa-institution" style="margin-right:6px;"></i><span>库房系统</span></a>
+                            </dd>
+                            <dd>
+                                <a href="/SYTSGL/chooseStorage.html"><i class="fa fa-book" style="margin-right:6px;"></i><span>图书系统</span></a>
+                            </dd>
+                            <dd>
+                                <a href="/SYKYGL/index.html"><i class="fa fa-object-group" style="margin-right:6px;"></i><span>科研系统</span></a>
+                            </dd>
+
+                            <dd>
+                                <a href="javascript:void(0);" id="signOut"><i class="fa fa-power-off" style="margin-right:6px;"></i><span>退出</span></a>
+                            </dd>
+                        </dl>
+                    </li>
+
+                    <!--  <li class="layui-nav-item    -xs" lay-unselect>
+           <a href="javascript:;" layadmin-event="about"><i class="layui-icon layui-icon-more-vertical"></i></a>
+         </li>
+         <li class="layui-nav-item layui-show-xs-inline-block    -sm" lay-unselect>
+           <a href="javascript:;" layadmin-event="more"><i class="layui-icon layui-icon-more-vertical"></i></a>
+         </li> -->
+                </ul>
+            </div>
+
+            <!-- 侧边菜单 -->
+            <div class="layui-side layui-side-menu" id="index_leftLogo" style="background-image: url(../../Widget/indexImg/left-bg.png);top: 69px; background-repeat: no-repeat;background-position: 50% 100%;background-color: #4168ba!important;">
+
+                <div class="layui-side-scroll">
+                    <!-- <div class="layui-logo" lay-href="home/console.html">
+          <span>人力资源管理系统</span>
+        </div> -->
+                    <div class="list-flexible">
+                        <a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
+                            <i style="color: #FFFFFF;" class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
+                        </a>
+                    </div>
+
+                    <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
+                        <li data-name="home" class="layui-nav-item layui-nav-itemed item-nav">
+                            <a href="javascript:;" lay-tips="员工管理" lay-direction="2">
+                                <i class="layui-icon layui-icon-user"></i>
+                                <cite>员工管理</cite>
+                            </a>
+                            <dl class="layui-nav-child">
+                                <dd data-name="console" id="20190329151735173585176948208">
+                                    <a lay-href="HrUserPage/Hr_User/DataList_user.html?limit=20190329151735173585176948208">员工花名册</a>
+                                </dd>
+                                <dd data-name="console" id="20190329151811181189751535167">
+                                    <a lay-href="HrUserPage/Hr_User/DataList_Transfer.html?limit=20190329151811181189751535167">调动记录</a>
+                                </dd>
+                                <dd data-name="console" id="2019032915250825886343346158">
+                                    <a lay-href="HrUserPage/Hr_User/DataList_Contract.html?limit=2019032915250825886343346158">合同管理</a>
+                                </dd>
+                                <dd data-name="console" id="20190329152525252581994046100">
+                                    <a lay-href="HrUserPage/Hr_User/DataList_Education.html?limit=20190329152525252581994046100">教育经历管理</a>
+                                </dd>
+                                <dd data-name="console" id="20190329153645364587893306179">
+                                    <a lay-href="HrUserPage/Hr_User/DataList_WorkExperience.html?limit=20190329153645364587893306179">工作经历管理</a>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li data-name="home" class="layui-nav-item item-nav">
+                            <a href="javascript:;" lay-tips="组织架构" lay-direction="2">
+                                <i class="layui-icon layui-icon-app"></i>
+                                <cite>组织架构</cite>
+                            </a>
+                            <dl class="layui-nav-child">
+                                <dd data-name="console" id="20190329153757375783977818214">
+                                    <a lay-href="HrUserPage/Hr_Organize/OrganizerChart.html?limit=20190329153757375783977818214">组织架构图</a>
+                                </dd>
+                                <dd data-name="console" id="20190329153811381184917245113">
+                                    <a lay-href="HrUserPage/Hr_Organize/OrganizerManage.html?limit=20190329153811381184917245113">组织管理</a>
+                                </dd>
+                                <dd data-name="console" id="20190329153823382388463202142">
+                                    <a lay-href="HrUserPage/Hr_Organize/OrganizerPosition.html?limit=20190329153823382388463202142">职位管理</a>
+                                </dd>
+                            </dl>
+                        </li>
+
+                        <li data-name="home" class="layui-nav-item item-nav">
+                            <a href="javascript:;" lay-tips="奖惩管理" lay-direction="2">
+                                <i class="layui-icon layui-icon-praise"></i>
+                                <cite>奖惩管理</cite>
+                            </a>
+                            <dl class="layui-nav-child">
+                                <dd data-name="console" id="2019032915390039089559206224">
+                                    <a lay-href="HrUserPage/Hr_RewardPenalty/Reward.html?RewardPenalty=Reward&limit=2019032915390039089559206224">奖励</a>
+                                </dd>
+                                <dd data-name="console" id="2019032915391539158676966180">
+                                    <a lay-href="HrUserPage/Hr_RewardPenalty/Reward.html?RewardPenalty=Penalty&limit=2019032915391539158676966180">惩罚</a>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li data-name="home" class="layui-nav-item item-nav">
+                            <a href="javascript:;" lay-tips="培训管理" lay-direction="2">
+                                <i class="layui-icon layui-icon-log"></i>
+                                <cite>培训管理</cite>
+                            </a>
+                            <dl class="layui-nav-child">
+                                <dd data-name="console" id="20190329153937393788910323143">
+                                    <a lay-href="HrUserPage/Hr_Train/TrainManage.html?limit=20190329153937393788910323143">培训记录</a>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li data-name="home" class="layui-nav-item item-nav">
+                            <a href="javascript:;" lay-tips="薪资福利" lay-direction="2">
+                                <i class="layui-icon layui-icon-rmb"></i>
+                                <cite>薪资福利</cite>
+                            </a>
+                            <dl class="layui-nav-child">
+                                <dd data-name="console" id="20190329153950395086153015128">
+                                    <a lay-href="HrUserPage/Hr_Salary/SalaryProject.html?limit=20190329153950395086153015128">薪资项目</a>
+                                </dd>
+                                <dd data-name="console" id="20190329154055405582955903188">
+                                    <a lay-href="HrUserPage/Hr_Salary/SalaryStatistics.html?limit=20190329154055405582955903188">薪资统计</a>
+                                </dd>
+                                <dd data-name="console" id="20190412144457445785655011101">
+                                    <a lay-href="HrUserPage/Hr_Salary/SalaryStatisticsMonth.html?limit=20190412144457445785655011101">月度薪资</a>
+                                </dd>
+                                <dd data-name="console" id="20190329154114411487178925144">
+                                    <a lay-href="HrUserPage/Hr_Salary/userCare.html?limit=20190329154114411487178925144">人员关怀</a>
+                                </dd>
+                                <!-- <dd data-name="console" id="20190329154157415782190598228">
+										<a lay-href="HrUserPage/Hr_Salary/safetyFactor.html?limit=20190329154157415782190598228">保险系数</a>
+                                    </dd> -->
+                                <dd data-name="console" id="20190329154157415782190598228">
+                                    <a lay-href="HrUserPage/Hr_Salary/SalaryFactor_list.html">保险系数</a>
+                                </dd>
+                                <dd data-name="console" id="">
+                                    <a lay-href="HrUserPage/Hr_Salary/Attendance.html">员工考勤</a>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li data-name="home" class="layui-nav-item item-nav">
+                            <a href="javascript:;" lay-tips="证照管理" lay-direction="2">
+                                <i class="layui-icon layui-icon-survey"></i>
+                                <cite>证照管理</cite>
+                            </a>
+                            <dl class="layui-nav-child">
+                                <dd data-name="console" id="201903291542174217824446693">
+                                    <a lay-href="HrUserPage/Hr_Certificate/Certificate.html?limit=201903291542174217824446693">证照管理</a>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li data-name="home" class="layui-nav-item item-nav">
+                            <a href="javascript:;" lay-tips="职称管理" lay-direction="2">
+                                <i class="layui-icon layui-icon-diamond"></i>
+                                <cite>职称管理</cite>
+                            </a>
+                            <dl class="layui-nav-child">
+                                <!--<dd data-name="console">-->
+                                <!--<a lay-href="">职称设置</a>-->
+                                <!--</dd>-->
+                                <dd data-name="console" id="2019032915430043089963813245">
+                                    <a lay-href="HrUserPage/Hr_PositionalTitles/PositionalTitlesManage.html?limit=2019032915430043089963813245">职称评定</a>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li data-name="home" class="layui-nav-item item-nav">
+                            <a href="javascript:;" lay-tips="统计管理" lay-direction="2">
+                                <i class="layui-icon layui-icon-set"></i>
+                                <cite>统计管理</cite>
+                            </a>
+                            <dl class="layui-nav-child">
+                                <dd data-name="console" id="2019041110322832288725278328">
+                                    <a lay-href="HrUserPage/Hr_User/DataList_user.html?ygtj=ygtj&limit=2019041110322832288725278328">员工信息统计</a>
+                                </dd>
+                            </dl>
+                        </li>
+
+                        <li data-name="home" class="layui-nav-item item-nav">
+                            <a href="javascript:;" lay-tips="系统管理" lay-direction="2">
+                                <i class="layui-icon layui-icon-set"></i>
+                                <cite>系统管理</cite>
+                            </a>
+                            <dl class="layui-nav-child">
+                                <dd data-name="console" id="20190329154320432082693120192">
+                                    <a lay-href="HrUserPage/sysSet/userList.html?limit=20190329154320432082693120192">管理员列表</a>
+                                </dd>
+                                <dd data-name="console" id="20190329154334433487253616228">
+                                    <a lay-href="HrUserPage/sysSet/roleList.html?limit=20190329154334433487253616228">角色表</a>
+                                </dd>
+                                <!-- <dd data-name="console" id="20190409182018201880139295213">
+                                    <a lay-href="HrUserPage/Hr_sysConfig/DataList_system.html?limit=20190409182018201880139295213">系统项类别配置</a>
+                                </dd> -->
+                                <dd data-name="console">
+                                    <a lay-href="HrUserPage/Hr_sysConfig/DataList_system_value.html">系统项配置</a>
+                                </dd>
+                                <dd data-name="console" id="20190410133811381185285604148">
+                                    <a lay-href="HrUserPage/Hr_sysConfig/Logs.html?limit=20190410133811381185285604148">用户操作日志</a>
+                                </dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+
+                <div style="width:100%;text-align: center;position: absolute;bottom: 20px;">
+                    <img src="../../Widget/indexImg/logo0.png" style="width:60%;" id="index_leftbottom">
+                </div>
+            </div>
+
+            <!-- 页面标签 -->
+            <div class="layadmin-pagetabs" id="LAY_app_tabs" style="top:70px;">
+
+                <div class="layui-icon layadmin-tabs-control layui-icon-prev" layadmin-event="leftPage"></div>
+                <div class="layui-icon layadmin-tabs-control layui-icon-next" layadmin-event="rightPage"></div>
+                <div class="layui-icon layadmin-tabs-control layui-icon-down">
+
+                    <ul class="layui-nav layadmin-tabs-select" lay-filter="layadmin-pagetabs-nav">
+                        <li class="layui-nav-item" lay-unselect>
+                            <a href="javascript:;"></a>
+                            <dl class="layui-nav-child layui-anim-fadein">
+                                <dd layadmin-event="closeThisTabs">
+                                    <a href="javascript:;">关闭当前标签页</a>
+                                </dd>
+                                <dd layadmin-event="closeOtherTabs">
+                                    <a href="javascript:;">关闭其它标签页</a>
+                                </dd>
+                                <dd layadmin-event="closeAllTabs">
+                                    <a href="javascript:;">关闭全部标签页</a>
+                                </dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+                <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
+                    <a href="javascript:;" layadmin-event="refresh" title="刷新" class="refresh">
+                        <i class="layui-icon layui-icon-refresh-3"></i>
+                    </a>
+                    <ul class="layui-tab-title" id="LAY_app_tabsheader" style="width:97%;display:inline-block;float:right">
+                        <li lay-id="home/home.html" lay-attr="home/home.html" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 主体内容 -->
+            <div class="layui-body" id="LAY_app_body" style="top:110px;">
+                <div class="layadmin-tabsbody-item layui-show">
+                    <iframe src="home/home.html" frameborder="0" class="layadmin-iframe"></iframe>
+                </div>
+            </div>
+
+            <!-- 辅助元素，一般用于移动设备下遮罩 -->
+            <div class="layadmin-body-shade" layadmin-event="shade"></div>
+
+            <div class="layui-footer">
+                <a href="javascript:;" style="float:left;">
+                    <i class="fa fa-exclamation-circle"></i>
+                    <span id="copyright_name">使用单位：</span>
+                    <span id="copyright_name_value"></span>
+                </a>
+                <a href="javascript:;" style="float:right;">
+                    <span id="support_name">技术支持：</span>
+                    <span id="support_name_value"></span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

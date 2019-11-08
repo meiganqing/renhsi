@@ -1,0 +1,363 @@
+<!--
+ * @陕西唐远
+ * @文件名: User_Add.html
+ * @作者: 张黎博
+ * @Git: zlb
+ * @Date: 2019-10-24 12:04:02
+ * @描述: 用户添加页面
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  1 20191028 zlb 更换接口
+ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>添加员工</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+    <style type="text/css">
+        .addUserInfo .layui-input-inline {
+            width: 150px;
+        }
+        
+        .mustBespan {
+            color: red;
+        }
+        
+        .addUserInfo {
+            background: #f2f2f2;
+        }
+        
+        .addUserInfo>form {
+            background: #fff;
+        }
+        
+        .addUserInfo .site-tips {
+            line-height: 36px;
+            border-left: 5px solid #009E94;
+            margin: 15px 0 5px;
+            padding: 0 10px;
+            background-color: #f2f2f2;
+        }
+        
+        .addUserInfo .layui-inline {
+            margin-top: 20px;
+        }
+        
+        .userInfoTable {
+            width: 100%;
+            border: 1px solid #ddd;
+            margin: 0 auto;
+            height: 650px;
+        }
+        
+        .userInfoTable tr {
+            width: 100%;
+        }
+        
+        .userInfoTable td {
+            width: 10%;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        .userInfoTable td:nth-child(5) {
+            width: 10%;
+            /* text-align: center;
+            border: 1px solid #ddd; */
+        }
+        
+        .userInfoTable input {
+            border: 0 solid;
+        }
+        
+        .layui-elem-quote {
+            overflow: hidden;
+            width: 90%;
+            margin: 15px auto;
+            padding: 10px 20px;
+        }
+        
+        .layui-elem-quote span {
+            float: left;
+            line-height: 30px;
+        }
+        
+        .layui-elem-quote button {
+            float: right;
+        }
+        
+        .layui-textarea {
+            border: none;
+        }
+        
+        #uploadPhoto {
+            margin-right: 10px;
+        }
+        
+        .someHide .layui-elem-quote,
+        .someHide .layui-layout-admin,
+        .someHide #researchFfield,
+        .someHide #achievements {
+            display: none;
+        }
+        
+        .someHide #achievementsT,
+        .someHide #researchFfieldT {
+            display: block!important;
+            text-align: left;
+            padding-left: 10px;
+        }
+        
+        .shadeShow {
+            width: 90%;
+            height: 100%;
+            position: absolute;
+            z-index: 2
+        }
+        
+        .backchange {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body layadmin-themealias="default">
+    <div class="addUserInfo layui-fluid" id="hideDiv">
+        <div id="shade"></div>
+        <!--startprint-->
+        <form class="layui-form" id="FormID">
+            <input type="hidden" id="userid" name="XDLMuserid">
+            <input type="hidden" id="onlynum" name="XDLMonlynum">
+            <div class="layui-tab-content">
+                <!-- <div class="layui-elem-quote" id="scdyDiv">
+                    <span>员工基本信息</span>
+                    <button type="button" class="layui-btn layui-btn-sm layui-btn-primary" id="printInfo">打印</button>
+                    <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" id="uploadPhoto">上传照片</button>
+                </div> -->
+                <table class="userInfoTable">
+                    <tbody>
+                        <tr>
+                            <td class="backchange"><span class="mustBespan">*</span> 姓名</td>
+                            <td>
+                                <input type="text" name="XDLMmUserName" lay-verify="required" id="mUserName" placeholder="请输入姓名" class="layui-input disBorder">
+                            </td>
+                            <td class="backchange"><span class="mustBespan">*</span>性别</td>
+                            <td>
+                                <select name="XDLMsex" id="sex" lay-verify="required" lay-search="">
+                                <option value="">请选择</option>
+                                <option value="男">男</option>
+                                <option value="女">女</option>
+                                </select>
+                            </td>
+                            <td rowspan="5" style="vertical-align: middle;">
+                                <!--<div class="layui-upload-list" style="width: 100%;height: 180px;text-align:center;">-->
+                                <img class="layui-upload-img" style="width: 100%;" id="photoimh" />
+                                <input type="hidden" name="XDLMphoto" id="photo">
+                                <!--<img src="" alt="">-->
+                                <!--<p id="demoText"></p>-->
+                                <!--</div>-->
+                                <!--<button style="margin-left:20px;" type="button" class="layui-btn" id="uploadUserImg">上传图片</button>-->
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="backchange"><span class="mustBespan">*</span>手机号码</td>
+                            <td><input type="text" name="XDLMmPhone" lay-verify="required|number" id="mPhone" placeholder="请输入手机号码" class="layui-input"></td>
+                            <td class="backchange"><span class="mustBespan">*</span>民族</td>
+                            <td>
+                                <select name="XDLMnation" id="nation" lay-verify="required">
+                                    <!-- <option value="汉">汉</option>
+                                    <option value="其他">其他</option> -->
+                                    </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="backchange">健康状况</td>
+                            <td>
+                                <select name="XDLMHealth" id="Health" lay-verify="">
+                                <!-- <option value="健康">健康</option>
+                                <option value="良好">良好</option> -->
+                                </select>
+                            </td>
+                            <td class="backchange">血型</td>
+                            <td colspan="">
+                                <select name="XDLMBloodType" id="BloodType" lay-verify="">
+                                    
+                                    </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="backchange">婚姻状况</td>
+                            <td>
+                                <select name="XDLMMarriageState" id="MarriageState" lay-verify="">
+                                <!-- <option value="1">未婚</option>
+                                <option value="2">已婚</option> -->
+                                </select>
+                            </td>
+                            <td class="backchange"><span class="mustBespan">*</span>学历</td>
+                            <td>
+                                <select name="XDLMEducation" id="Education" lay-verify="required">
+                                    <!-- <option value="1">高中</option>
+                                    <option value="2">大专</option>
+                                    <option value="3">本科</option>
+                                    <option value="4">硕士</option>
+                                    <option value="5">博士</option> -->
+                                    </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="backchange"><span class="mustBespan">*</span>出生日期</td>
+                            <td>
+                                <input type="text" name="XDLMborn" lay-verify="required" id="born" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                            </td>
+                            <td class="backchange"><span class="mustBespan">*</span>籍贯</td>
+                            <td colspan="">
+                                <input type="text" name="XDLMNativePlace" id="NativePlace" lay-verify="required" placeholder="请输入籍贯" class="layui-input disBorder">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="backchange"><span class="mustBespan">*</span>证件类型</td>
+                            <td>
+                                <select name="XDLMIDType" id="IDType" lay-verify="required">
+                                    <!-- <option value="1">身份证</option>
+                                    <option value="2">军官证</option>
+                                    <option value="3">驾驶证</option>
+                                    <option value="4">健康证</option> -->
+                                    </select>
+                            </td>
+                            <td class="backchange"><span class="mustBespan">*</span>证件号码</td>
+                            <td colspan="2">
+                                <input type="text" name="XDLMsfzh" lay-verify="required" id="sfzh" placeholder="请输入证件号码" class="layui-input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="backchange"><span class="mustBespan">*</span>员工属性</td>
+                            <td>
+                                <select name="XDLMUserAttribute" id='UserAttribute' lay-verify="required">
+              <!-- <option value="1">编制内</option>
+              <option value="2">编制外</option> -->
+            </select>
+                            </td>
+                            <td class="backchange"><span class="mustBespan">*</span>入职时间</td>
+                            <td colspan="2">
+                                <input type="text" name="XDLMEntryTime" id="EntryTime" lay-verify="required" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="backchange"><span class="mustBespan">*</span>政治面貌</td>
+                            <td>
+                                <select name="XDLMPoliticalOutlook" id="PoliticalOutlook" lay-verify="required">
+              <!-- <option value="1">群众</option>
+              <option value="2">党员</option> -->
+            </select>
+                            </td>
+                            <td class="backchange">入党时间</td>
+                            <td colspan="2">
+                                <input type="text" name="XDLMAsPartyTime" id="AsPartyTime" lay-verify="" placeholder="yyyy-MM-dd" class="layui-input">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="backchange"><span class="mustBespan">*</span>职员状态</td>
+                            <td>
+                                <select name="XDLMWorkState" id="WorkState" lay-verify="required">
+              <!-- <option value="1">在职</option>
+              <option value="2">离职</option> -->
+            </select>
+                            </td>
+                            <td class="backchange"><span class="mustBespan">*</span>部门</td>
+                            <td colspan="2">
+                                <!-- <input name="XDLMmDepart" id="mDepart" lay-filter="tree" lay-verify="required"> -->
+                                <select name="XDLMmDepart" id="mDepart" lay-verify="">
+                                    
+                                  </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="backchange"><span class="mustBespan">*</span>职位</td>
+                            <td>
+                                <select name="XDLMPosition" id="Position" lay-verify="required">
+
+            </select>
+                            </td>
+                            <td class="backchange">直属上级</td>
+                            <td colspan="2">
+                                <input type="hidden" name="remarks" id="remarks">
+                                <select name="XDLMSuperior" id="Superior" lay-verify="">
+              <!-- <option value="1">直属上级1</option>
+              <option value="2">直属上级2</option>
+              <option value="3">直属上级3</option> -->
+            </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="backchange">研究领域</td>
+                            <td colspan="4">
+                                <textarea type="text" name="XDLMyjly" id="yjly" autocomplete="off" class="layui-textarea" lay-verify=""></textarea>
+                                <div style="height:100px;display:none;" id="researchFfieldT"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="backchange">成果介绍</td>
+                            <td colspan="4">
+                                <textarea type="text" name="XDLMAchievements" id="Achievements" autocomplete="off" class="layui-textarea" lay-verify=""></textarea>
+                                <div style="height:100px;display:none;" id="achievementsT"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--endprint-->
+            <div class="layui-tab-content">
+                <table class="userInfoTable">
+                    <tbody>
+                        <tr>
+                            <td class="backchange">登录名</td>
+                            <td colspan="">
+                                <input type="text" name="XDLMmLoginName" lay-verify="required" id="mLoginName" placeholder="（添加之后不可修改）" class="layui-input">
+                            </td>
+                            <td class="backchange">密码</td>
+                            <td colspan="">
+                                <input type="text" id="mUserPassword" placeholder="（修改时若需修改密码直接输入）" class="layui-input">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+            <div class="layui-form-item layui-layout-admin" style="margin-top:20px;" id="butDiv">
+                <div class="layui-input-block">
+                    <div class="layui-footer" style="left:0;">
+                        <button id="submit" type="button" class="layui-btn" lay-submit="submit" lay-filter="submit">添加</button>
+                        <button id="CancelBtn" onclick="closeWindow()" type="button" class="layui-btn layui-btn-primary">取消</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</body>
+
+
+
+<script src="../../../layuiadmin/layui/layui.js"></script>
+<script src="../../../../js/SysJS/store.min.js"></script>
+<script src="../../../../js/SysJS/HrDataManage.js"></script>
+<script src="../../../../Widget/jquery-1.8.3.min.js"></script>
+<script src="../../../../Widget/jquery.PrintArea.js"></script>
+<script src="../../../../js/views/Hr_User/User_Add.js"></script>
+<!-- <script src="../../../../js/SysJS/allSelectJson.js"></script> -->
+<script type="text/javascript">
+</script>
+
+</html>

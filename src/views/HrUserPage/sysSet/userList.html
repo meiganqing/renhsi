@@ -1,0 +1,105 @@
+<!--
+ * @陕西唐远
+ * @文件名: userList.html
+ * @作者: 张黎博
+ * @Git: zlb
+ * @Date: 2019-09-11 15:22:09
+ * @描述: 用户表列表页html
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>角色列表</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+
+    <link rel="stylesheet" src="../../../../Widget/verify/css/verify.css">
+</head>
+<style>
+
+</style>
+
+<body>
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+                <!--<div class="layui-card-body">-->
+                <div class="layui-inline" style="z-index: 1000;">
+                    <label class="layui-form-label">查询条件：</label>
+                    <div class="layui-inline" style="width: 120px;">
+                        <select id="cxlb" lay-search lay-filter="cxlb" placeholder="全部">
+                        <option value=""></option>
+                    </select>
+                    </div>
+                </div>
+                <div class="layui-inline search-type" id="keyworDiv">
+                    <label class="layui-form-label" style="width: 80px;">关键字：</label>
+                    <div class="layui-inline" style="width: 260px;">
+                        <input class="layui-input key-words" name="keyWords" placeholder="请输入关键字" id="keyWords" autocomplete="on">
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 30px;">
+                    <button class="layui-btn " type="button" name="searchData" id="searchData">查询</button>
+                </div>
+
+
+                <div class="layui-inline">
+                    <button class="layui-btn " id="updateTable" onclick="updateDataTable()">刷新</button>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <table id="tableList" lay-filter="tableList">
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+</html>
+
+<script src="../../../layuiadmin/layui/layui.js"></script>
+<script type="text/javascript" src="../../../../lib/js/store.min.js"></script>
+<script type="text/javascript" src="../../../../lib/js/jquery-1.8.3.min.js"></script>
+<script src="../../../../Widget/verify/js/verify.js"></script>
+<script src="./js/xdDataMange.js"></script>
+<script type="text/javascript" src="../../../../js/SysJS/limit.js"></script>
+<script src="./js/userList.js"></script>
+
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        {{# if(limitConfig("storeLimt_rsgl", 2)){ }}
+        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>{{# } }}{{# if(limitConfig("storeLimt_rsgl", 3)){ }}
+        <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delPL">批量删除</button>{{# } }}
+    </div>
+</script>
+
+<script type="text/html" id="opeTpl">
+    {{# if(limitConfig("storeLimt_rsgl", 2)){ }}
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="setBtn">配置</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>{{# } }}{{# if(limitConfig("storeLimt_rsgl", 3)){ }}
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>{{# } }}
+</script>
+
+
+<script type="text/html" id="yhzt">
+    {{# if(d.isDisabled=="True"){ }}禁用{{# } }}{{# if(d.isDisabled=="False"){ }}正常{{# } }}
+</script>
+
+<script type="text/html" id="yhname">
+    {{QueryKeyColor(d['mLoginName'])}}
+</script>
+<script type="text/html" id="zsname">
+    {{QueryKeyColor(d['mUserName'])}}
+</script>

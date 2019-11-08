@@ -1,0 +1,73 @@
+<!--
+ * @陕西唐远
+ * @文件名: userRole.html
+ * @作者: 张黎博
+ * @Git: zlb
+ * @Date: 2019-09-25 20:16:31
+ * @描述: 用户设置角色html
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+
+    <!--<link rel="stylesheet" href="/plugins/font-awesome/css/font-awesome.min.css" media="all">-->
+    <title></title>
+    <style>
+        .layui-table-header table th {
+            text-align: center;
+        }
+        
+        td {
+            text-align: center;
+        }
+        
+        .layui-form-select {
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" style="padding:10px;">
+        <div style="text-align:left">
+            <form class="layui-form">
+
+                <div class="layui-form-item layui-inline frt">
+                    <div class="layui-inline ">
+                        <button class="layui-btn layui-btn-danger btn-xs" type="button" id="saveRole">确认设置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <table class="layui-table" id="demo" lay-filter="xmTable">
+        </table>
+    </div>
+
+    <script type="text/html" id="shqx">
+        <input type="checkbox" name="checkedValue" lay-skin="primary" lay-filter="checkedValue" value="{{d.roleNum}}">
+    </script>
+    <!-- <script type="text/html" id="opeTpllcjd">
+        <a class="layui-btn  layui-btn-xs layui-btn-warm" lay-event="edit">编辑</a>
+
+        <a class="layui-btn  layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+    </script> -->
+
+</body>
+
+
+</html>
+<script src="../../../layuiadmin/layui/layui.js"></script>
+<script type="text/javascript" src="../../../../lib/js/store.min.js"></script>
+<script type="text/javascript" src="../../../../lib/js/jquery-1.8.3.min.js"></script>
+<script src="../../../../Widget/verify/js/verify.js"></script>
+<script src="./js/xdDataMange.js"></script>
+<script src="./js/userRole.js"></script>

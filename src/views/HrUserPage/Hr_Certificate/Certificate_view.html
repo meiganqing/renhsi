@@ -1,0 +1,163 @@
+<!--
+ * @陕西唐远
+ * @文件名: 
+ * @作者: 李浩源
+ * @Git: e
+ * @Date: 2019-10-24 14:12:00
+ * @描述: 
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>rightCommon</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="../width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="../../../../css/upload.css" />
+    <style type="text/css">
+        .layui-table-tool-self {
+            position: absolute;
+            right: 17px;
+            top: 15px;
+        }
+        
+        .layui-table-tool-self>.layui-inline {
+            position: relative;
+            /* width: 26px; */
+            /* height: 26px; */
+            padding: 5px;
+            line-height: 16px;
+            margin-right: 10px;
+            text-align: center;
+            color: #333;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            -webkit-transition: .5s all;
+            transition: .5s all;
+        }
+        
+        .addUserInfo .layui-input-inline {
+            width: 150px;
+        }
+        
+        .addUserInfo .site-tips {
+            line-height: 36px;
+            border-left: 5px solid #009E94;
+            margin: 15px 0 5px;
+            padding: 0 10px;
+            background-color: #f2f2f2;
+        }
+        
+        html {
+            background: #fff;
+        }
+        
+        .backchange {
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body layadmin-themealias="default">
+    <div class="layui-container">
+        <div id="content" style="margin-top: 10px;">
+            <div class="layui-elem-quote" style="padding-top: 10px;padding-bottom: 10px;">证照管理</div>
+            <div id="api_content">
+                <table class="layui-table">
+                    <colgroup>
+                        <col width="30%">
+                        <col width="70%">
+                    </colgroup>
+
+                    <tbody>
+                        <tr>
+                            <td class="backchange mc">员工姓名</td>
+                            <td id="UserName"></td>
+                        </tr>
+                        <tr>
+                            <td class="backchange mc">所属部门</td>
+                            <td id="DepName"></td>
+                        </tr>
+                        <tr>
+                            <td class="backchange mc">证件类型</td>
+                            <td id="LicenceType"></td>
+                        </tr>
+                        <tr>
+                            <td class="backchange mc">证件编号</td>
+                            <td id="LicenceCode"></td>
+                        </tr>
+                        <tr>
+                            <td class="backchange mc">证件名称</td>
+                            <td id="LicenceName"></td>
+                        </tr>
+                        <tr>
+                            <td class="backchange mc">生效日期</td>
+                            <td id="GetTime"></td>
+                        </tr>
+                        <tr>
+                            <td class="backchange mc">到期日期</td>
+                            <td id="TakeTime"></td>
+                        </tr>
+                        <tr>
+                            <td class="backchange mc">状态</td>
+                            <td id="State"></td>
+                        </tr>
+                        <tr>
+                            <td class="backchange mc">发证机构</td>
+                            <td id="Certification"></td>
+                        </tr>
+                        <tr>
+                            <td class="backchange">附件</td>
+                            <td>
+                                <div class="pictue-module" id="pictueModule">
+                                    <div class="build-file-module layui-row" id="">
+                                        <ul id="imgContent">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <fieldset class="layui-elem-field layui-field-title">
+                    <legend>附件</legend>
+                </fieldset>
+                <div class="layui-upload-list">
+                  <table class="layui-table">
+                    <thead>
+                      <th>缩略图</th>
+                      <th>文件名</th>
+                      <th class="layui-hide">上传进度</th>
+                      <th class="layui-hide">状态</th>
+                      <th>操作</th>
+                    </thead>
+                    <tbody id="showfileFJ" allSrc = "">
+                    </tbody>
+                  </table>
+                </div> -->
+            </div>
+
+        </div>
+    </div>
+</body>
+<!-- 弹出调动 -->
+
+<script src="../../../layuiadmin/layui/layui.js"></script>
+<script src="../../../../js/SysJS/store.min.js"></script>
+<script src="../../../../Widget/verify/js/jquery.min.js"></script>
+<script src="../../../../js/SysJS/HrDataManage.js"></script>
+<!-- <script src="../../../../js/SysJS/allSelectJson.js"></script> -->
+<script src="../../../../js/views/Hr_Certificate/Certificate_view.js"></script>
+<!-- <script type="text/javascript" src="../../../../Widget/uploadImage/upload.js"></script> -->
+<script type="text/javascript">
+</script>
+
+</html>

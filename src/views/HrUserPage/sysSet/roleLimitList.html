@@ -1,0 +1,166 @@
+<!--
+ * @陕西唐远
+ * @文件名: roleLimitList.html
+ * @作者: 张黎博
+ * @Git: zlb
+ * @Date: 2019-09-11 15:22:09
+ * @描述: 角色配置列表html
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" src="../../../../Widget/verify/css/verify.css">
+
+</head>
+<style>
+    .layui-table-header table th {
+        text-align: center;
+    }
+    
+    td {
+        text-align: center;
+    }
+    
+    .layui-form-select {
+        width: 80%;
+    }
+    
+    .layui-btn {
+        background-color: #d3bc93;
+    }
+    
+    .layui-btn-danger {
+        background-color: #db1616;
+    }
+    
+    #updateTable {
+        background-color: #6079e6;
+    }
+    
+    .layui-laypage .layui-laypage-curr .layui-laypage-em {
+        background-color: #d3bc93;
+    }
+    
+    .own-btn-blue {
+        background-color: #4BC4CE;
+    }
+    
+    .own-btn-orange {
+        background-color: #d3bc93;
+    }
+    
+    .own-btn-red {
+        background-color: #db1616;
+    }
+    
+    #saveRole {
+        background-color: #FF5722;
+    }
+</style>
+
+<body>
+    <div class="container" style="padding:10px;">
+        <div style="text-align:left">
+            <form class="layui-form">
+                <div class="layui-inline">
+                    <span>当前角色：</span>
+                    <span style="color:red;" id="rolename"></span>
+                </div>&ensp;&ensp;
+                <div class="layui-form-item layui-inline">
+                    <div class="layui-inline ">
+                        <button class="layui-btn layui-btn-normal btn-xs" id="add_RolePower" type="button">添加</button>
+                        <button class="layui-btn layui-btn-danger btn-xs" type="button" id="PLSC">批量删除</button>
+                    </div>
+                </div>
+                <div class="layui-form-item layui-inline">
+                    <div class="layui-inline">
+                        <select id="xmbhList" lay-filter="xmbhList">
+                                <!-- <option value="kyxx">科研系统</option> -->
+                                <option value="rsgl">人事系统</option>
+							</select>
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-inline">
+                    <div class="layui-inline">
+                        <input type="checkbox" value="checkbox_fw" name="all_fw" title="可访问" id="all_fw" class="layui-xs" lay-filter='all_fw'>
+                        <input type="checkbox" value="checkbox_bj" name="all_bj" title="可编辑" id="all_bj" class="layui-xs" lay-filter='all_bj'>
+                        <input type="checkbox" value="checkbox_sc" name="all_sc" title="可删除" id="all_sc" class="layui-xs" lay-filter='all_sc'>
+                        <input type="checkbox" value="checkbox_dc" name="all_dc" title="可导出" id="all_dc" class="layui-xs" lay-filter='all_sc'>
+                        <input type="checkbox" value="checkbox_sh" name="all_sh" title="可审核" id="all_sh" class="layui-xs" lay-filter='all_sh'>
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-inline frt">
+                    <div class="layui-inline ">
+                        <button class="layui-btn layui-btn-danger btn-xs" type="button" id="saveRole">确认设置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title site-title">
+            <legend>
+                <a name="grid" id="moduleName">项目流程节点</a>
+            </legend>
+        </fieldset>
+        <div id="lcshow"> </div>
+        <table class="layui-table" id="demo" lay-filter="xmTable">
+        </table>
+    </div>
+    <script type="text/html" id="fwqx">
+        <input type="checkbox" name="checkbox_fw" class="setCheck" lay-skin="primary" lay-filter="checkbox_fw" {{ d.qx.substring(1,2)=="1" ? 'checked' : '' }} id="checkbox_fw{{d.id}}" value="checkbox_fw{{d.id}}">
+    </script>
+    <script type="text/html" id="bjqx">
+        <input type="checkbox" name="checkbox_bj" lay-skin="primary" lay-filter="checkbox_bj" {{ d.qx.substring(2,3)=="1" ? 'checked' : '' }} id="checkbox_bj{{d.id}}" value="checkbox_bj{{d.id}}">
+    </script>
+    <script type="text/html" id="scqx">
+        <input type="checkbox" name="checkbox_sc" lay-skin="primary" lay-filter="checkbox_sc" {{ d.qx.substring(3,4)=="1" ? 'checked' : '' }} id="checkbox_sc{{d.id}}" value="checkbox_sc{{d.id}}">
+    </script>
+    <script type="text/html" id="dcqx">
+        <input type="checkbox" name="checkbox_dc" lay-skin="primary" lay-filter="checkbox_dc" {{ d.qx.substring(4,5)=="1" ? 'checked' : '' }} id="checkbox_dc{{d.id}}" value="checkbox_dc{{d.id}}">
+    </script>
+    <script type="text/html" id="shqx">
+        <input type="checkbox" name="checkbox_sh" lay-skin="primary" lay-event="sh_check" lay-filter="checkbox_sh" {{ d.qx.substring(5,6)=="1" ? 'checked' : '' }} id="checkbox_sh{{d.id}}" value="checkbox_sh{{d.id}}">
+    </script>
+
+    <!--	<a class="layui-btn  layui-btn-xs " lay-event="config">配置关联表</a>-->
+    <script type="text/html" id="opeTpllcjd">
+        <a class="layui-btn  layui-btn-xs layui-btn-warm" lay-event="edit">编辑</a>
+
+        <a class="layui-btn  layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+    </script>
+</body>
+
+</html>
+
+<script src="../../../layuiadmin/layui/layui.js"></script>
+<script type="text/javascript" src="../../../../lib/js/store.min.js"></script>
+<script type="text/javascript" src="../../../../lib/js/jquery-1.8.3.min.js"></script>
+<script src="../../../../Widget/verify/js/verify.js"></script>
+<script src="./js/xdDataMange.js"></script>
+<script type="text/javascript" src="../../../../js/SysJS/limit.js"></script>
+<script src="./js/roleLimitList.js"></script>
+
+<!-- <script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+        <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delPL">批量删除</button>
+    </div>
+</script> -->
+
+<!-- <script type="text/html" id="opeTpl">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script> -->

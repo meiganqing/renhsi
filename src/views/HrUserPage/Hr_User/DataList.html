@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>员工管理</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../../Widget/verify/css/verify.css" media="all">
+
+  <style>
+    #yzm{
+      width: 70%;
+      margin: 0 auto;
+      margin-top: 20px;
+    }
+    .hide{
+      display:none;
+    }
+  </style>
+</head>
+<body>
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+      <div class="layui-card">
+        <!--<div class="layui-card-header">操作</div>-->
+        <form class="layui-form">
+          <div class="layui-card-body layui-row layui-col-space10 layui-form-item layui-form">
+            <div class="layui-inline">
+              <label class="layui-form-label" style="width: 70px;padding-right:5px;">查询类别：</label>
+              <div class="layui-input-block" style="margin-left:90px;">
+                <select id="searchType" class="layui-input" lay-filter="searchChange">
+                  <option value="">模糊查询</option>
+                  <option value="userName">姓名</option>
+                  <option value="sex">性别</option>
+                  <option value="nativePlace">籍贯</option>
+                  <option value="depId">部门</option>
+                  <option value="postId">职位</option>
+                  <option value="phoneNumber">联系电话</option>
+                  <option value="education">学历</option>
+                  <option value="paperNumber">证件号码</option>
+                  <option value="politicalOutlook">政治面貌</option>
+                  <option value="nation">民族</option>
+                  <option value="researchFfield">研究领域</option>
+                  <option value="achievements">成果介绍</option>
+                  <option value="workState">职员状态</option>
+                </select>
+              </div>
+            </div>
+            <div class="layui-inline" style="margin-top:3px;">
+              <div class="layui-inline hide workStatesearch">
+                <label class="layui-form-label" style="width: 70px;padding-right:5px;">职员状态：</label>
+                <div class="layui-input-block" style="margin-left:90px;">
+                  <select id="workState" class="layui-input" lay-filter="workState">
+                    <option value="">全部</option>
+                    <option value="1">在职</option>
+                    <option value="2">离职</option>
+                  </select>
+                </div>
+              </div>
+              <div class="layui-inline hide sexsearch">
+                <label class="layui-form-label" style="width: 70px;padding-right:5px;">性别：</label>
+                <div class="layui-input-block" style="margin-left:90px;">
+                  <select id="sex" class="layui-input" lay-filter="sex">
+                    <option value="">全部</option>
+                    <option value="1">男</option>
+                    <option value="2">女</option>
+                  </select>
+                </div>
+              </div>
+              <div class="layui-inline hide depIdsearch">
+                <label class="layui-form-label" style="width: 70px;padding-right:5px;">部门：</label>
+                <div class="layui-input-block" style="margin-left:90px;">
+                  <input id="depId" class="layui-input" lay-filter="tree">
+                </div>
+              </div>
+              <div class="layui-inline hide postIdsearch">
+                <label class="layui-form-label" style="width: 70px;padding-right:5px;">职位：</label>
+                <div class="layui-input-block" style="margin-left:90px;">
+                  <select id="postId" class="layui-input" lay-filter="postId">
+                  </select>
+                </div>
+              </div>
+
+              <div class="layui-inline hide educationsearch">
+                <label class="layui-form-label" style="width: 70px;padding-right:5px;">学历：</label>
+                <div class="layui-input-block" style="margin-left:90px;">
+                  <select id="education" class="layui-input" lay-filter="education">
+                    	
+                  </select>
+                </div>
+              </div>
+              <div class="layui-inline hide politicalOutlooksearch">
+                <label class="layui-form-label" style="width: 70px;padding-right:5px;">政治面貌：</label>
+                <div class="layui-input-block" style="margin-left:90px;">
+                  <select id="politicalOutlook" class="layui-input" lay-filter="politicalOutlook">
+                    	
+                  </select>
+                </div>
+              </div>
+              <div class="layui-inline hide nationsearch">
+                <label class="layui-form-label" style="width: 70px;padding-right:5px;">民族：</label>
+                <div class="layui-input-block" style="margin-left:90px;">
+                  <select id="nation" class="layui-input" lay-filter="nation">
+                    
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="layui-inline allsearch">
+                <label class="layui-form-label" style="width: 56px;padding-right:5px;">关键字：</label>
+                <div class="layui-input-block" style="margin-left:76px;">
+                  <input id="antistop" class="layui-input" />
+                </div>
+              </div>
+              
+            </div>
+            <div class="layui-inline btnsearch">
+                <button class="layui-btn" lay-submit="" lay-filter="search" id="searchBtn">查询</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">员工列表</div>
+        <div class="layui-card-body">
+          <table class="layui-hide" id="TableList" lay-filter="test-table-toolbar"></table>
+
+
+           	<script type="text/html" id="test-table-toolbar-barDemo">
+	            <a class="layui-btn layui-btn-xs" lay-event="select">查看员工信息</a>
+          	</script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="yzm" style="display: none;">
+  <div id="mpanel2"></div>
+  <button type="button" id="check-btn" class="verify-btn">确定</button>
+</div>
+
+<script src="../../../layuiadmin/layui/layui.js"></script>
+<script src="../../../../js/SysJS/store.min.js"></script>
+<script src="../../../../Widget/verify/js/jquery.min.js"></script>
+<script src="../../../../Widget/verify/js/verify.js"></script>
+<script src="../../../../js/SysJS/HrDataManage.js"></script>
+<script src="../../../../js/SysJS/limit.js"></script>
+<script src="../../../../js/SysJS/allSelectJson.js"></script>
+<script src="../../../../js/views/Hr_User/DataList.js"></script>
+
+<script type="text/html" id="color_mc">
+  {{ QueryKeyColor(d['userName'],"antistop") }}
+</script>
+<script type="text/html" id="nativePlace">
+  {{ QueryKeyColor(d['nativePlace'],"antistop") }}
+</script>
+<script type="text/html" id="phoneNumber">
+  {{ QueryKeyColor(d['phoneNumber'],"antistop") }}
+</script>
+
+<script type="text/html" id="paperNumber">
+  {{ QueryKeyColor(d['paperNumber'],"antistop") }}
+</script>
+<script type="text/html" id="researchFfield">
+  {{ QueryKeyColor(d['researchFfield'],"antistop") }}
+</script>
+<script type="text/html" id="achievements">
+  {{ QueryKeyColor(d['achievements'],"antistop") }}
+</script>
+</body>
+</html>

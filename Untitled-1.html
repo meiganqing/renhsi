@@ -1,0 +1,760 @@
+/*
+ * @陕西唐远
+ * @文件名: 
+ * @作者: 李浩源
+ * @Git: e
+ * @Date: 2019-10-24 14:11:59
+ * @描述: 
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ */
+var $;
+layui.config({
+	base: '../../layuiadmin/' //静态资源所在路径
+}).extend({
+	index: 'lib/index' //主入口模块
+}).use(['index', 'console', 'form', 'jquery', 'element', 'laydate'], function () {
+	$ = layui.$;
+	var laydate = layui.laydate;
+
+
+	// function getStatisticsInfo(type,val){
+	// 	return PostData("/Controllers/Hr_User/GetUserState?type="+type+"&value="+val,"").data;
+	// }
+
+	// 点击头部数据跳转
+	// $("#all").html(getStatisticsInfo(3,0));
+	// $("#dtj").html(getStatisticsInfo(1,1));
+	// $("#shz").html(getStatisticsInfo(2,1));
+	// $("#ylx").html(getStatisticsInfo(2,2));
+
+	// var degreedata = PostData("/Controllers/Hr_User/GetEducationList","").data;
+
+	// var ageoptiondata = PostData("/Controllers/Hr_User/GetAgeList","").data;
+
+	// var EntryTimeoptiondata = PostData("/Controllers/Hr_User/GetEntryTimeList","").data;
+
+	// var postionoptiondata = PostData("/Controllers/Hr_User/GetPositionList","").data;
+
+	// var postionoptiondata2 = PostData("/Controllers/Hr_User/GetTitleList","").data;
+
+
+	// var moneyoptiondata = PostData("/Controllers/Hr_User/GetSalaryViceList?year=2019&month=04","").data;
+
+
+	// var sexdata = PostData("/Controllers/Hr_User/GetSexList","").data;
+
+	// var ins1 = laydate.render({
+	//   elem: '#moneyType'
+	//   ,type: 'month'
+	//   ,done: function(value, date, endDate){
+	//   	moneyoptiondata = PostData("/Controllers/Hr_User/GetSalaryViceList?year="+value.substring(0,4)+"&month="+value.substring(5,7)+"","").data;
+	//   	moneyTwochange();
+	//   }
+});
+
+
+// 薪资统计
+function moneyTwochange() {
+	var moneyStatechart = echarts.init(document.getElementById('moneyState'));
+	var moneyStateoption = {
+		title: {
+			text: '',
+			subtext: ''
+		},
+		tooltip: {
+			trigger: 'axis'
+		},
+
+		toolbox: {
+			show: true,
+			feature: {
+				mark: { show: true },
+				dataView: { show: true, readOnly: false },
+				magicType: { show: true, type: ['line', 'bar'] },
+				restore: { show: true },
+				saveAsImage: { show: true }
+			}
+		},
+		calculable: true,
+		xAxis: [
+			{
+				type: 'category',
+				data: forArr(moneyoptiondata)
+			}
+		],
+		yAxis: [
+			{
+				type: 'value'
+			}
+		],
+		series: [
+			{
+				name: '人数',
+				type: 'bar',
+				data: forArrVal(moneyoptiondata),
+				itemStyle: {
+					normal: {
+						color: function (params) {
+							// build a color map as your need.
+							var colorList = [
+								'#C1232B', '#B5C334', '#FCCE10', '#E87C25', '#27727B',
+								'#FE8463', '#9BCA63', '#FAD860', '#F3A43B', '#60C0DD',
+								'#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0'
+							];
+							return colorList[params.dataIndex]
+						},
+						label: {
+							show: true,
+							position: 'top',
+							// formatter: '{b}\n{c}'
+						}
+					}
+				},
+			}
+		]
+	};
+	moneyStatechart.setOption(moneyStateoption);
+}
+
+function forArr(arr) {
+	var newArr = [];
+	for (let i = 0; i < arr.length; i++) {
+		newArr.push(arr[i].name);
+	}
+	return newArr;
+}
+
+
+function forArrVal(arr) {
+	var newArr = [];
+	for (let i = 0; i < arr.length; i++) {
+		newArr.push(arr[i].value);
+	}
+	return newArr;
+}
+
+$(window).resize(function () {
+	onloadEchart();
+});
+onloadEchart();
+// 学历统计
+function onloadEchart() {
+
+	var Degree = echarts.init(document.getElementById('Degree'));
+	var Degreeoption = {
+		title: {
+			text: '学历统计',
+			subtext: '每日更新',
+			x: 'center'
+		},
+		tooltip: {
+			trigger: 'item',
+			formatter: "{a} <br/>{b} : {c} ({d}%)"
+		},
+		legend: {
+			orient: 'vertical',
+			x: 'left',
+			data: forArr(degreedata)
+		},
+		toolbox: {
+			show: true,
+			feature: {
+				mark: { show: true },
+				dataView: { show: true, readOnly: false },
+				magicType: {
+					show: true,
+					type: ['pie', 'funnel'],
+					option: {
+						funnel: {
+							x: '25%',
+							width: '50%',
+							funnelAlign: 'left',
+							max: 1548
+						}
+					}
+				},
+				restore: { show: true },
+				saveAsImage: { show: true }
+			}
+		},
+		calculable: true,
+		series: [
+			{
+				name: '访问来源',
+				type: 'pie',
+				radius: '55%',
+				center: ['50%', '60%'],
+				data: degreedata,
+				itemStyle: {
+					normal: {
+						label: {
+							//                              	指示字与线
+							show: true,
+							//                                  显示百分比
+							formatter: '{b} : {c} ({d}%)'
+						},
+						labelLine: {
+							//                              	指示线
+							show: true
+						},
+					},
+				},
+			}
+		]
+	};
+	Degree.setOption(Degreeoption);
+
+	Degree.on('click', function (param) {
+		var degreeIndex = layer.open({
+			type: 2,
+			content: '../HrUserPage/Hr_Statistics/statistics_user.html?checkName=education&checkType=' + returnKey(education, param.name),
+			area: ['320px', '195px'],
+			maxmin: true
+		});
+
+		layer.full(degreeIndex);
+	});
+
+	// 年龄统计
+	var agechart = echarts.init(document.getElementById('age'));
+	var ageoption = {
+		title: {
+			text: '年龄统计',
+			subtext: '每日更新',
+			x: 'center'
+		},
+		tooltip: {
+			trigger: 'item',
+			formatter: "{a} <br/>{b} : {c} ({d}%)"
+		},
+		legend: {
+			orient: 'vertical',
+			x: 'left',
+			data: forArr(ageoptiondata)
+		},
+		toolbox: {
+			show: true,
+			feature: {
+				mark: { show: true },
+				dataView: { show: true, readOnly: false },
+				magicType: {
+					show: true,
+					type: ['pie', 'funnel'],
+					option: {
+						funnel: {
+							x: '25%',
+							width: '50%',
+							funnelAlign: 'left',
+							max: 1548
+						}
+					}
+				},
+				restore: { show: true },
+				saveAsImage: { show: true }
+			}
+		},
+		calculable: true,
+		series: [
+			{
+				name: '访问来源',
+				type: 'pie',
+				radius: '55%',
+				center: ['50%', '60%'],
+				data: ageoptiondata,
+				itemStyle: {
+					normal: {
+						label: {
+							//                              	指示字与线
+							show: true,
+							//                                  显示百分比
+							formatter: '{b} : {c} ({d}%)'
+						},
+						labelLine: {
+							//                              	指示线
+							show: true
+						},
+					},
+				},
+			}
+		]
+	};
+	agechart.setOption(ageoption);
+
+	// agechart.on('click',  function(param) {
+	//     var ageIndex = layer.open({
+	// 	  type: 2,
+	// 	  content: '../HrUserPage/Hr_Statistics/statistics_user.html?checkName=age&checkType='+returnKey(age,param.name),
+	// 	  area: ['320px', '195px'],
+	// 	  maxmin: true
+	// 	});
+
+	// 	layer.full(ageIndex);
+	// });   
+
+
+	// 司龄统计
+	var EntryTimechart = echarts.init(document.getElementById('EntryTime'));
+	var EntryTimeoption = {
+		title: {
+			text: '司龄统计',
+			subtext: '每日更新',
+			x: 'center'
+		},
+		tooltip: {
+			trigger: 'item',
+			formatter: "{a} <br/>{b} : {c} ({d}%)"
+		},
+		legend: {
+			orient: 'vertical',
+			x: 'left',
+			data: forArr(EntryTimeoptiondata)
+		},
+		toolbox: {
+			show: true,
+			feature: {
+				mark: { show: true },
+				dataView: { show: true, readOnly: false },
+				magicType: {
+					show: true,
+					type: ['pie', 'funnel'],
+					option: {
+						funnel: {
+							x: '25%',
+							width: '50%',
+							funnelAlign: 'left',
+							max: 1548
+						}
+					}
+				},
+				restore: { show: true },
+				saveAsImage: { show: true }
+			}
+		},
+		calculable: true,
+		series: [
+			{
+				name: '访问来源',
+				type: 'pie',
+				radius: '55%',
+				center: ['50%', '60%'],
+				data: EntryTimeoptiondata,
+				itemStyle: {
+					normal: {
+						label: {
+							//                              	指示字与线
+							show: true,
+							//                                  显示百分比
+							formatter: '{b} : {c} ({d}%)'
+						},
+						labelLine: {
+							//                              	指示线
+							show: true
+						},
+					},
+				},
+			}
+		]
+	};
+	EntryTimechart.setOption(EntryTimeoption);
+
+
+
+	// 性别统计
+	var sexchart = echarts.init(document.getElementById('sex'));
+	var sexoption = {
+		title: {
+			text: '性别统计',
+			subtext: '每日更新',
+			x: 'center'
+		},
+		tooltip: {
+			trigger: 'item',
+			formatter: "{a} <br/>{b} : {c} ({d}%)"
+		},
+		legend: {
+			orient: 'vertical',
+			x: 'left',
+			data: forArr(sexdata)
+		},
+		toolbox: {
+			show: true,
+			feature: {
+				mark: { show: true },
+				dataView: { show: true, readOnly: false },
+				magicType: {
+					show: true,
+					type: ['pie', 'funnel'],
+					option: {
+						funnel: {
+							x: '25%',
+							width: '50%',
+							funnelAlign: 'left',
+							max: 1548
+						}
+					}
+				},
+				restore: { show: true },
+				saveAsImage: { show: true }
+			}
+		},
+		calculable: true,
+		series: [
+			{
+				name: '访问来源',
+				type: 'pie',
+				radius: '55%',
+				center: ['50%', '60%'],
+				data: sexdata,
+				itemStyle: {
+					normal: {
+						label: {
+							//                              	指示字与线
+							show: true,
+							//                                  显示百分比
+							formatter: '{b} : {c} ({d}%)'
+						},
+						labelLine: {
+							//                              	指示线
+							show: true
+						},
+					},
+				},
+			}
+		]
+	};
+	sexchart.setOption(sexoption);
+
+
+	sexchart.on('click', function (param) {
+		var sexIndex = layer.open({
+			type: 2,
+			content: '../HrUserPage/Hr_Statistics/statistics_user.html?checkName=sex&checkType=' + returnKey(sex, param.name),
+			area: ['320px', '195px'],
+			maxmin: true
+		});
+
+		layer.full(sexIndex);
+	});
+
+	//职位统计
+	var postionchart = echarts.init(document.getElementById('postionState'));
+	var postionoption = {
+		title: {
+			text: '',
+			subtext: ''
+		},
+		tooltip: {
+			trigger: 'axis'
+		},
+
+		toolbox: {
+			show: true,
+			feature: {
+				mark: { show: true },
+				dataView: { show: true, readOnly: false },
+				magicType: { show: true, type: ['line', 'bar'] },
+				restore: { show: true },
+				saveAsImage: { show: true }
+			}
+		},
+		calculable: true,
+		xAxis: [
+			{
+				type: 'category',
+				data: forArr(postionoptiondata),
+				axisLabel: {
+					//横坐标上的文字斜着显示 begin 
+					interval: 0,
+					// ?? ??? ??? ??? ??? ? rotate:45,
+					margin: 10,
+					formatter: function (value) {
+						// console.log(value);
+						var valueDetal = value.split("-").join("");
+						console.log(valueDetal);
+						var ret = ""; //拼接加\n返回的类目项  
+						var maxLength = 3; //每项显示文字个数  
+						var valLength = valueDetal.length; //X轴类目项的文字个数
+						// console.log(valLength);
+						var rowN = Math.ceil(valLength / maxLength); //类目项需要换行的行数 
+						if (rowN > 1) { //如果类目项的文字大于3,
+							for (var i = 0; i < rowN; i++) {
+								var temp = ""; //每次截取的字符串  
+								var start = i * maxLength; //开始截取的位置  
+								var end = start + maxLength; //结束截取的位置  
+								//这里也可以加一个是否是最后一行的判断，但是不加也没有影响，那就不加吧  
+								temp = valueDetal.substring(start, end) + "\n";
+								ret += temp; //凭借最终的字符串  
+							}
+							return ret;
+						} else {
+							return valueDetal;
+						}
+					}
+
+				}
+			}
+		],
+		yAxis: [
+			{
+				type: 'value'
+			}
+		],
+		series: [
+			{
+				name: '人数',
+				type: 'bar',
+				data: forArrVal(postionoptiondata),
+				itemStyle: {
+					normal: {
+						color: function (params) {
+							// build a color map as your need.
+							var colorList = [
+								'#C1232B', '#B5C334', '#FCCE10', '#E87C25', '#27727B',
+								'#FE8463', '#9BCA63', '#FAD860', '#F3A43B', '#60C0DD',
+								'#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0'
+							];
+							return colorList[params.dataIndex]
+						},
+						label: {
+							show: true,
+							position: 'top',
+
+						}
+					}
+				},
+			}
+		]
+	};
+	postionchart.setOption(postionoption);
+
+
+	postionchart.on('click', function (param) {
+		var sexIndex = layer.open({
+			type: 2,
+			content: '../HrUserPage/Hr_Statistics/statistics_user.html?checkName=postId&checkType=' + selectPosidByname(param.name),
+			area: ['320px', '195px'],
+			maxmin: true
+		});
+
+		layer.full(sexIndex);
+	});
+
+	//薪资统计
+
+	var moneyStatechart = echarts.init(document.getElementById('moneyState'));
+	var moneyStateoption = {
+		title: {
+			text: '',
+			subtext: ''
+		},
+		tooltip: {
+			trigger: 'axis'
+		},
+
+		toolbox: {
+			show: true,
+			feature: {
+				mark: { show: true },
+				dataView: { show: true, readOnly: false },
+				magicType: { show: true, type: ['line', 'bar'] },
+				restore: { show: true },
+				saveAsImage: { show: true }
+			}
+		},
+		calculable: true,
+		xAxis: [
+			{
+				type: 'category',
+				data: forArr(moneyoptiondata)
+			}
+		],
+		yAxis: [
+			{
+				type: 'value'
+			}
+		],
+		series: [
+			{
+				name: '人数',
+				type: 'bar',
+				data: forArrVal(moneyoptiondata),
+				itemStyle: {
+					normal: {
+						color: function (params) {
+							// build a color map as your need.
+							var colorList = [
+								'#C1232B', '#B5C334', '#FCCE10', '#E87C25', '#27727B',
+								'#FE8463', '#9BCA63', '#FAD860', '#F3A43B', '#60C0DD',
+								'#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0'
+							];
+							return colorList[params.dataIndex]
+						},
+						label: {
+							show: true,
+							position: 'top',
+						}
+					}
+				},
+			}
+		]
+	};
+	moneyStatechart.setOption(moneyStateoption);
+
+	//职称统计
+	var postionchart2 = echarts.init(document.getElementById('postionState2'));
+	var postionoption2 = {
+		title: {
+			text: '',
+			subtext: ''
+		},
+		tooltip: {
+			trigger: 'axis'
+		},
+
+		toolbox: {
+			show: true,
+			feature: {
+				mark: { show: true },
+				dataView: { show: true, readOnly: false },
+				magicType: { show: true, type: ['line', 'bar'] },
+				restore: { show: true },
+				saveAsImage: { show: true }
+			}
+		},
+		calculable: true,
+		xAxis: [
+			{
+				type: 'category',
+				data: forArr(postionoptiondata2)
+			}
+		],
+		yAxis: [
+			{
+				type: 'value'
+			}
+		],
+		series: [
+			{
+				name: '人数',
+				type: 'bar',
+				data: forArrVal(postionoptiondata2),
+				itemStyle: {
+					normal: {
+						color: function (params) {
+							// build a color map as your need.
+							var colorList = [
+								'#C1232B', '#B5C334', '#FCCE10', '#E87C25', '#27727B',
+								'#FE8463', '#9BCA63', '#FAD860', '#F3A43B', '#60C0DD',
+								'#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0'
+							];
+							return colorList[params.dataIndex]
+						},
+						label: {
+							show: true,
+							position: 'top',
+						}
+					}
+				},
+			}
+		]
+	};
+	postionchart2.setOption(postionoption2);
+
+	postionchart2.on('click', function (param) {
+		var sexIndex = layer.open({
+			type: 2,
+			content: '../HrUserPage/Hr_PositionalTitles/PositionalTitlesManage.html?checkName=titleName&checkType=' + returnKey(titleName, param.name),
+			area: ['320px', '195px'],
+			maxmin: true
+		});
+
+		layer.full(sexIndex);
+	});
+
+}
+
+
+gettransfermanage();
+});
+
+function gettransfermanage() {
+
+	var data = {
+		page: 1,
+		limit: 6
+	}
+	// 通知公告
+	var datalist = PostData("/Controllers/Hr_TransferManage/GetListByPage", JSON.stringify(data)).data;
+
+	var html = '';
+
+	for (let i = 0; i < datalist.length; i++) {
+		html += '<li transferId=' + datalist[i].id + ' style="border-bottom:1px solid #f2f2f2;padding:0 10px;line-height:35px;height:35px;cursor: pointer;">'
+		html += '<p style="display:inline-block;overflow: hidden;height: 100%;white-space: nowrap;width: 100%;text-overflow: ellipsis;" title = ' + datalist[i].userName + '于' + datalist[i].transferTime + '由' + datalist[i].fDepName + '部门的' + datalist[i].fPositionName + '调动为' + datalist[i].aDepName + '部门的' + datalist[i].aPositionName + '>' + datalist[i].userName + '于' + datalist[i].transferTime + '由' + datalist[i].fDepName + '部门的' + datalist[i].fPositionName + '调动为' + datalist[i].aDepName + '部门的' + datalist[i].aPositionName + '</p>'
+		html += '</li>'
+	}
+
+	$("#informList").html(html)
+
+}
+
+
+// 点击通知公告
+$("body").on("click", "#informList>li", function () {
+	layer.open({
+		type: 2,
+		// skin: 'layui-layer-molv', //加上边框
+		area: ['70%', '80%'], //宽高
+		content: "../HrUserPage/Hr_User/Transfer_check.html?rowid=" + $(this).attr("transferId"),
+		title: '查看记录',
+	})
+})
+
+
+$("body").on("click", "#all", function () {
+	layer.open({
+		type: 2,
+		content: '../HrUserPage/Hr_Statistics/statistics_user.html',
+		area: ['100%', '100%'],
+		maxmin: true
+	})
+})
+
+
+$("body").on("click", "#dtj", function () {
+	layer.open({
+		type: 2,
+		content: '../HrUserPage/Hr_Statistics/statistics_user.html?checkName=workState&checkType=1',
+		area: ['100%', '100%'],
+		maxmin: true
+	})
+})
+
+$("body").on("click", "#shz", function () {
+	layer.open({
+		type: 2,
+		content: '../HrUserPage/Hr_Statistics/statistics_user.html?checkName=userAttribute&checkType=1',
+		area: ['100%', '100%'],
+		maxmin: true
+	})
+})
+
+$("body").on("click", "#ylx", function () {
+	layer.open({
+		type: 2,
+		content: '../HrUserPage/Hr_Statistics/statistics_user.html?checkName=userAttribute&checkType=2',
+		area: ['100%', '100%'],
+		maxmin: true
+	})
+})
+
+function selectPosidByname(names) {
+	let data = {
+		page: 1,
+		limit: 10,
+		queryText: "and PositionName = '" + names + "'"
+	}
+	return PostData("/Controllers/Hr_PositionManage/GetListByPage", JSON.stringify(data)).data[0].id;
+}

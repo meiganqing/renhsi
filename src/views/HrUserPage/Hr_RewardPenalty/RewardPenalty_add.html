@@ -1,0 +1,133 @@
+<!--
+ * @陕西唐远
+ * @文件名: RewardPenalty_add.html
+ * @作者: 张黎博
+ * @Git: zlb
+ * @Date: 2019-10-24 12:04:02
+ * @描述: 奖罚添加页
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>rightCommon</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content../="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+    <style type="text/css">
+        .layui-table-tool-self {
+            position: absolute;
+            right: 17px;
+            top: 15px;
+        }
+        
+        .layui-table-tool-self>.layui-inline {
+            position: relative;
+            /* width: 26px; */
+            /* height: 26px; */
+            padding: 5px;
+            line-height: 16px;
+            margin-right: 10px;
+            text-align: center;
+            color: #333;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            -webkit-transition: .5s all;
+            transition: .5s all;
+        }
+        
+        .addUserInfo .layui-input-inline {
+            width: 150px;
+        }
+        
+        .addUserInfo .site-tips {
+            line-height: 36px;
+            border-left: 5px solid #009E94;
+            margin: 15px 0 5px;
+            padding: 0 10px;
+            background-color: #f2f2f2;
+        }
+        
+        html {
+            background: #fff;
+        }
+    </style>
+</head>
+
+<body layadmin-themealias="default">
+    <div id="changePosition" class="layui-fluid">
+        奖惩管理
+        <hr>
+        <form class="layui-form" lay-filter="formData">
+            <input type="hidden" name="XDLMUserId" id="UserId" class="layui-input">
+            <input type="hidden" name="XDLMRewardType" id="RewardType" class="layui-input">
+            <div class="layui-form-item" style="margin-top:20px">
+                <label class="layui-form-label">员工姓名</label>
+                <div class="layui-input-block">
+                    <select name="XDLMUserName" id="UserName" lay-verify="required" lay-filter="UserName" lay-search="">
+			          
+			      	</select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label"><span class="typechose"></span>原因</label>
+                    <div class="layui-input-inline">
+                        <select name="XDLMRewardProject" id="RewardProject" lay-verify="required" lay-search="">
+			          <!-- <option value="1">积极参加工作</option>
+			          <option value="2">不迟到早退</option>
+			          <option value="3">违规操作</option> -->
+			        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label"><span class="typechose"></span>日期</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="XDLMRewardTime" id="RewardTime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label"><span class="typechose"></span>金额</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="XDLMRewardMoney" id="RewardMoney" lay-verify="required|number" placeholder="请输入奖惩的金额" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label"><span class="typechose"></span>说明</label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入内容" lay-verify="required" style="width:90%" id="RewardExplain" name="XDLMRewardExplain" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item layui-layout-admin" style="margin-top:20px;">
+                <div class="layui-input-block">
+                    <div class="layui-footer" style="left:0px;">
+                        <button id="submit" type="button" class="layui-btn" lay-submit="submit" lay-filter="submit">添加</button>
+                        <button onclick="closeWindow()" class="layui-btn layui-btn-primary">取消</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</body>
+<!-- 弹出调动 -->
+
+<script src="../../../layuiadmin/layui/layui.js"></script>
+<script src="../../../../Widget/jquery-1.8.3.min.js"></script>
+<script src="../../../../js/SysJS/store.min.js"></script>
+<script src="../../../../js/SysJS/HrDataManage.js"></script>
+<script src="../../../../js/views/Hr_RewardPenalty/RewardPenalty_add.js"></script>
+<!-- <script src="../../../../js/SysJS/allSelectJson.js"></script> -->
+
+<script type="text/javascript">
+</script>
+
+</html>

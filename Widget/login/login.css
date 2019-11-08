@@ -1,0 +1,142 @@
+.mainBack img{
+	margin: 0px!important ;
+	border: 0px;
+	padding: 0px!important ;
+	display: inline-block;
+	float: left;
+	/*width: calc(100% / 6);*/
+	cursor: inherit;
+	/*height: calc(100vh /3);*/
+	width: 100%;
+	height: 100%;
+}
+
+.mainBackDiv{
+	background-image: url('../../img/login/BG.jpg');
+	background-position:center center;
+	width: 100%;
+	height: 100%;
+
+}
+.mainBack{
+	overflow: hidden;
+	/*min-width: 1300px;*/
+}
+.mainBack,.mainBody{
+	width: 100%;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	z-index: 0;
+	top: 0;
+}
+.mainBody{
+	z-index: 2;
+}
+body{
+	background:#3f65bb;
+}
+.mainInfo{
+	width: 1100px;
+    height: 750px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -550px;
+    margin-top: -345px;
+}
+.infoTop li img{
+	cursor: inherit;
+	vertical-align: text-top;
+}
+.infoTop li{
+	display: inline-block;
+}
+.infoTop{
+	text-align: center;
+	margin-bottom: 40px;
+}
+.mainInfoBody{
+	width: 100%;
+	height: 600px;
+	background: url('./img/login.png');
+	background-size: 100% 100%;
+}
+.pageFoot{
+	text-align: center;
+	color: #fff;
+	font-size: 10px;
+	font-family: MicrosoftYaHei;
+	margin-top: 40px;
+}
+
+.loginwidget{
+	width: 370px;
+    height: 300px;
+    position: absolute;
+    right: 100px;
+    text-align: center;
+    top: 290px;
+}
+
+.loginwidget>p{
+	font-size: 28px;
+    color: #3059b4;
+    font-family: 宋体;
+    font-weight: 600;
+    margin-bottom: 35px;
+}
+.loginwidget>div{
+	height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #a1b9e6;
+    width: 257px;
+    margin: 0 auto;
+    margin-bottom:30px;
+}
+.loginwidget>div>input{
+	border: 0px solid;
+    background: transparent;
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+input::-webkit-input-placeholder{
+  color:#99b2dd;
+}
+input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+  color:#99b2dd;
+}
+input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+  color:#99b2dd;
+}
+input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
+  color:#99b2dd;
+}
+
+.trueBtn{
+	width: 194px;
+    height: 44px;
+    font-size: 18px;
+    line-height: 40px;
+    border-radius: 120px;
+    background: #4f93fe;
+    border: 1px solid #005afe;
+    display: inline-block;
+    color: #fff;
+}
+
+@media screen and (max-width: 1200px) { 
+	body{
+		width: 1200px;
+		height: 760px;
+	}
+
+	.mainInfo{
+		left: 50px;
+		top: 0px;
+		margin-left: 0px;
+   		margin-top: 0px;
+	}
+} 

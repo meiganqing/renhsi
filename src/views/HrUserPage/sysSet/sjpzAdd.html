@@ -1,0 +1,111 @@
+<!--
+ * @陕西唐远
+ * @文件名: sjpzAdd.html
+ * @作者: 张黎博
+ * @Git: zlb
+ * @Date: 2019-10-15 17:54:17
+ * @描述:  数据配置添加页
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>基础数据添加</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+
+</head>
+<style>
+    .layui-input-block {
+        width: 85%;
+    }
+    
+    #saveBtn {
+        background: linear-gradient(165deg, #469de8, #2c55cf);
+    }
+    
+    .layui-elem-quote {
+        border-left: 5px solid #3784eb;
+    }
+    
+    .hx_upHomepageFlie {
+        display: inline-block;
+        width: 111px;
+        height: 111px;
+        border: 1px solid #D2D2D2;
+        margin-right: 10px;
+    }
+    
+    .hx_upHomepageImg {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .HomepageImg {
+        width: 100%;
+        height: 100%;
+    }
+    
+    #HomepageImg {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<body>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <form class="layui-form" id="XMForm" style="width: 90%;margin: 20px auto;" lay-filter="form-group1">
+                <input type="hidden" name="XDLM分类id" id="分类id" value="">
+                <input type="hidden" name="XDLM父类id" id="父类id" value="-1">
+                <!-- <input type="hidden" name="XDLM类型" id="类型" value="类目"> -->
+                <div class="layui-form-item" id="isP">
+                    <label class="layui-form-label">是否根目录：</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="isParent" value="是" title="是" lay-filter="isParent">
+                        <input type="radio" name="isParent" value="否" title="否" checked lay-filter="isParent">
+                    </div>
+                </div>
+                <div class="layui-form-item" id="yfenlei">
+                    <label class="layui-form-label">原分类：</label>
+                    <div class="layui-input-block">
+                        <select id="原分类" lay-filter="原分类">
+                                <option value=''>请选择</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item" id="xfenlei">
+                    <label class="layui-form-label">目录名：</label>
+                    <div class="layui-input-block">
+                        <select id="父类选择" lay-filter="父类选择">
+                                <option value=''>请选择</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item" id="fenleiname">
+                    <label class="layui-form-label">分类名：</label>
+                    <div class="layui-input-block">
+                        <input type="text" required lay-verify="required" name="XDLM分类名" id="分类名" class="layui-input" style="width: 95%;">
+                    </div>
+                </div>
+                <div id="btnDiv" style="float: right;margin-right:23px;">
+                    <a class="layui-btn" id="saveHZ">保存</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script src="./js/xdDataMange.js"></script>
+<script type="text/javascript" src="./js/sjpzAdd.js"></script>

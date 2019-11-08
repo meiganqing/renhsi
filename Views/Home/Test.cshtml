@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "接口测试";
+}
+<style>
+    .red {
+        color: Red;
+    }
+
+    #url, #reqMsg, #result {
+        max-width: 1000px;
+    }
+
+    .input, .textarea {
+        width: 800px;
+    }
+</style>
+<script src="~/Scripts/jquery-3.2.1.js"></script>
+<script src="~/Scripts/json2.js"></script>
+<script src="~/Scripts/hmac-sha256.js"></script>
+<h2>测试请求</h2>
+<script type="text/javascript">
+    $(function () {
+        var appId = "website|93BBB59D-F39A-4744-BD75-61B5223F5BED";
+        var token = "EC999C14C86A4E5CBB6E04C5DE89356A";
+        var secretKey = "20da4a805a76214ef24844d42bdb04152f07a86398b09617263c92066d9c0c5905e77b0f8699eff4b41f9c6351acace4d28136ac0273fbd9009a67cdf598e599";
+        $("#testQuery").click(function () {
+            if ($("#url").val() == "") {
+                alert("请求地址不能为空");
+                return;
+            }
+            $("#result").val("处理中...");
+            var jsonData = $("#reqMsg").val();
+            var headerValue = generateAuthorizationHeaderValue(appId, token, secretKey);
+            $.ajax(
+                {
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', ' basic ' + appId + ';' + token);
+                    },
+                    url: $("#url").val(),
+                    // processData:false,
+                    type: "post",
+                    data: jsonData,
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (result) {
+                        $("#result").val(JSON.stringify(result));
+                    },
+                    error: function (a, b, c) {
+                        $("#result").val("出错了:" + JSON.stringify(a));
+                    }
+                });
+        });
+    })
+    function generateAuthorizationHeaderValue(appId, token, secretKey) {
+        var timestampString = new Date().toISOString();
+        var message = appId + '&' + timestampString;
+        var hash = CryptoJS.HmacSHA256(message, CryptoJS.enc.Hex.parse(secretKey));
+        var headerValue = appId + ';' + timestampString + ';' + hash + ';' + token;
+        return headerValue;
+    }
+
+</script>
+<a href="javascript:;" id="testQuery">测试API执行</a><br /><br />
+请求地址：<input type="text" id="url" style="width:500px;border:1px solid #808080" /><span class="red"> 如:/v1/XXX/XXX</span>
+<br /><br />
+请求参数：<textarea id="reqMsg" rows="10" cols="100" style="width:500px;border:1px solid #808080">{}</textarea><span class="red">有参数，为json格式字符串,无参给{}</span><br /><br />
+响应参数：<textarea id="result" rows="10" cols="150" style="width:500px;border:1px solid #808080"></textarea>

@@ -1,0 +1,167 @@
+<!--
+ * @陕西唐远
+ * @文件名: DataList_Contract.html
+ * @作者: 张黎博
+ * @Git: zlb
+ * @Date: 2019-10-24 12:04:02
+ * @描述: 合同管理页html
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>合同管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="../../../../Widget/verify/css/verify.css" media="all">
+
+    <style>
+        #yzm {
+            width: 70%;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+        
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card" id="cxDiv">
+                    <!--<div class="layui-card-header">操作</div>-->
+                    <!-- <form class="layui-form"> -->
+                    <div class="layui-card-body layui-row layui-col-space10 layui-form-item layui-form">
+                        <div class="layui-inline">
+                            <label class="layui-form-label" style="width: 70px;padding-right:5px;">查询类别：</label>
+                            <div class="layui-input-block" style="margin-left:90px;">
+                                <select id="searchType" class="layui-input" lay-filter="searchChange">
+                   
+                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline" style="margin-top:3px;">
+                            <div class="layui-inline allsearch" id="gjzdiv">
+                                <label class="layui-form-label" style="width: 56px;padding-right:5px;">关键字：</label>
+                                <div class="layui-input-block" style="margin-left:76px;">
+                                    <input id="antistop" class="layui-input" />
+                                </div>
+                            </div>
+                            <div class="layui-inline layui-hide userIdsearch" id="xmname">
+                                <label class="layui-form-label" style="width: 56px;padding-right:5px;">姓名：</label>
+                                <div class="layui-input-block" style="margin-left:76px;">
+                                    <select id="userId" lay-filter="userId" lay-search></select>
+                                </div>
+                            </div>
+                            <!-- <div class="layui-inline hide contractTypesearch">
+                                    <label class="layui-form-label" style="width: 70px;padding-right:5px;">合同类型：</label>
+                                    <div class="layui-input-block" style="margin-left:90px;">
+                                        <select id="contractType" lay-filter="contractType">
+                        <option value="1">录用合同</option>
+                        <option value="2">使用合同</option>
+                    </select>
+                                    </div> -->
+                            <!-- </div>
+                                <div class="layui-inline hide contractSignTimesearch">
+                                    <label class="layui-form-label" style="width: 120px;padding-right:5px;">合同签订日期:</label>
+                                    <div class="layui-input-block" style="margin-left:140px;">
+                                        <input id="contractSignTime" class="layui-input" placeholder="yyyy-MM-dd" autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div class="layui-inline hide contractBegTimesearch">
+                                    <label class="layui-form-label" style="width: 120px;padding-right:5px;">合同生效日期:</label>
+                                    <div class="layui-input-block" style="margin-left:140px;">
+                                        <input id="contractBegTime" class="layui-input" placeholder="yyyy-MM-dd" autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div class="layui-inline hide contractEndTimesearch">
+                                    <label class="layui-form-label" style="width: 120px;padding-right:5px;">合同到期日期:</label>
+                                    <div class="layui-input-block" style="margin-left:140px;">
+                                        <input id="contractEndTime" class="layui-input" placeholder="yyyy-MM-dd" autocomplete="off" />
+                                    </div>
+                                </div> -->
+                        </div>
+
+                        <div class="layui-inline btnsearch" id="chaxunbut">
+                            <button class="layui-btn" lay-submit="" lay-filter="search" id="searchBtn">查询</button>
+                        </div>
+                    </div>
+                    <!-- </form> -->
+                </div>
+                <div class="layui-card">
+                    <div class="layui-card-header">合同列表</div>
+                    <div class="layui-card-body">
+                        <table class="layui-hide" id="TableList" lay-filter="test-table-toolbar"></table>
+
+                        <script type="text/html" id="test-table-toolbar-toolbarDemo">
+                            <div class="layui-btn-container">
+
+                                {{# if(!userid){ }} {{# if(limitConfig("storeLimt_rsgl", 2)){ }}
+                                <button class="layui-btn layui-btn-sm changethisData" lay-event="addInfo">添加</button>{{# } }}{{# if(limitConfig("storeLimt_rsgl", 3)){ }}
+                                <button class="layui-btn layui-btn-sm layui-btn-danger delthisData" lay-event="deleteAll">批量删除</button>{{# } }}{{# } }}
+                                <!--<button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>-->
+                                <!--<button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>-->
+                                <!--<button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>-->
+                            </div>
+                        </script>
+
+                        <script type="text/html" id="test-table-toolbar-barDemo">
+                            {{# if(!userid && limitConfig("storeLimt_rsgl", 2)){ }}
+                            <a class="layui-btn layui-btn-xs changethisData" lay-event="edit">编辑</a>{{# } }}
+                            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="check">详情</a> {{# if(!userid && limitConfig("storeLimt_rsgl", 3)){ }}
+                            <a class="layui-btn layui-btn-danger layui-btn-xs delthisData" lay-event="delete">删除</a>{{# } }}
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="yzm" style="display: none;">
+        <div id="mpanel2"></div>
+        <button type="button" id="check-btn" class="verify-btn">确定</button>
+    </div>
+
+
+
+    <script src="../../../layuiadmin/layui/layui.js"></script>
+    <script src="../../../../js/SysJS/store.min.js"></script>
+    <script src="../../../../Widget/verify/js/jquery.min.js"></script>
+    <script src="../../../../Widget/verify/js/verify.js"></script>
+    <script src="../../../../js/SysJS/HrDataManage.js"></script>
+    <script src="../../../../js/SysJS/limit.js"></script>
+    <script src="../../../../js/views/Hr_User/DataList_Contract.js"></script>
+    <!-- <script src="../../../../js/SysJS/allSelectJson.js"></script> -->
+    <script type="text/html" id="UserName">
+        {{ QueryKeyColorsc(d['UserName'],"","userId") }}
+    </script>
+    <script type="text/html" id="ContractType">
+        {{ QueryKeyColor(d['ContractType'],"antistop") }}
+    </script>
+    <script type="text/html" id="contractCode">
+        {{ QueryKeyColor(d['ContractCode'],"antistop") }}
+    </script>
+    <script type="text/html" id="contractSignTime1">
+        {{ QueryKeyColor(d['ContractSignTime'],"antistop") }}
+    </script>
+    <script type="text/html" id="contractBegTime1">
+        {{ QueryKeyColor(d['ContractBegTime'],"antistop") }}
+    </script>
+    <script type="text/html" id="contractEndTime1">
+        {{ QueryKeyColor(d['ContractEndTime'],"antistop") }}
+    </script>
+</body>
+</body>
+
+</html>

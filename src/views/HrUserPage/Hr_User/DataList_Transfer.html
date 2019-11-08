@@ -1,0 +1,129 @@
+<!--
+ * @陕西唐远
+ * @文件名: DataList_Transfer.html
+ * @作者: 张黎博
+ * @Git: zlb
+ * @Date: 2019-10-24 12:04:02
+ * @描述: 调动记录页html
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>调动记录</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="../../../../Widget/verify/css/verify.css" media="all">
+
+    <style>
+        #yzm {
+            width: 70%;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card" id="cxDiv">
+                    <!--<div class="layui-card-header">操作</div>-->
+                    <div class="layui-card-body layui-row layui-col-space10 layui-form-item layui-form">
+                        <!--  <div class="layui-inline">
+            <label class="layui-form-label" style="width: 70px;padding-right:5px;">查询类别：</label>
+            <div class="layui-input-block" style="margin-left:90px;">
+              <select id="查询类别" class="layui-input" lay-filter="cxlb"></select>
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label" style="width: 56px;padding-right:5px;">关键字：</label>
+            <div class="layui-input-block" style="margin-left:76px;">
+              <input id="关键字" class="layui-input" />
+            </div>
+          </div>
+          <div class="layui-inline" >
+            <div class="layui-btn" id="searchBtn">查询</div>
+          </div> -->
+                        <div class="layui-inline">
+                            <label class="layui-form-label" style="width: 70px;padding-right:5px;">被调动人：</label>
+                            <div class="layui-input-block" style="margin-left:90px;">
+                                <select id="userId" class="layui-input" lay-filter="userId"></select>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label" style="width: 70px;padding-right:5px;">调动类型：</label>
+                            <div class="layui-input-block" style="margin-left:90px;">
+                                <select id="transferType" class="layui-input" lay-filter="transferType" lay-search>
+                                        <!-- <option value="">全部</option>
+                                        <option value="1">晋升</option>
+                                        <option value="2">平级</option>
+                                        <option value="3">降级</option> -->
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-card">
+                    <div class="layui-card-header">人员调动列表</div>
+                    <!--  <button class="layui-btn" id="export">
+            <i class="iconfont icon-export"></i> 导出
+        </button> -->
+                    <div class="layui-card-body">
+                        <table class="layui-hide" id="TableList" lay-filter="test-table-toolbar"></table>
+
+                        <script type="text/html" id="test-table-toolbar-toolbarDemo">
+                            <div class="layui-btn-container">
+                                <!-- <button class="layui-btn layui-btn-sm" lay-event="addInfo">添加</button> -->
+                                <!-- <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="deleteAll">批量删除</button> -->
+                                <!--<button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>-->
+                                <!--<button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>-->
+                                <!--<button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>-->
+                            </div>
+                        </script>
+
+                        <script type="text/html" id="test-table-toolbar-barDemo">
+                            <!--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
+                            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="check">查看详情</a>
+                            <!-- <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a> -->
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="yzm" style="display: none;">
+        <div id="mpanel2"></div>
+        <button type="button" id="check-btn" class="verify-btn">确定</button>
+    </div>
+
+
+
+    <script src="../../../layuiadmin/layui/layui.js"></script>
+    <script src="../../../../js/SysJS/store.min.js"></script>
+    <script src="../../../../Widget/verify/js/jquery.min.js"></script>
+    <script src="../../../../Widget/verify/js/verify.js"></script>
+    <script src="../../../../js/SysJS/HrDataManage.js"></script>
+    <script src="../../../../js/SysJS/limit.js"></script>
+    <!-- <script src="../../../../js/SysJS/allSelectJson.js"></script> -->
+    <script src="../../../../js/views/Hr_User/DataList_Transfer.js"></script>
+
+    <script type="text/html" id="TransferType">
+        {{ QueryKeyColorsc(d['TransferType'],"transferType") }}
+    </script>
+    <script type="text/html" id="UserName">
+        {{ QueryKeyColorsc(d['UserName'],"","userId") }}
+    </script>
+</body>
+
+</html>

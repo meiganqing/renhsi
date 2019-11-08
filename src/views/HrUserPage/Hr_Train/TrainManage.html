@@ -1,0 +1,187 @@
+<!--
+ * @陕西唐远
+ * @文件名: 
+ * @作者: 李浩源
+ * @Git: e
+ * @Date: 2019-10-24 14:12:00
+ * @描述: 
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+
+<!--
+  * @作者: 张黎博
+ * @Git: zlb
+ * @描述: 
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  1 20191030 zlb  个人访问时隐藏查询功能 增改按钮 
+ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>培训管理</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="../width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="../../../../Widget/verify/css/verify.css" media="all">
+    <style>
+        .layui-layer-rim {
+            background: #f2f2f2;
+        }
+        
+        #yzm {
+            width: 70%;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+        
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card" id="cxDiv">
+                    <!--<div class="layui-card-header">操作</div>-->
+                    <form class="layui-form">
+                        <div class="layui-card-body layui-row layui-col-space10 layui-form-item layui-form">
+                            <div class="layui-inline">
+                                <!-- <label class="layui-form-label" style="width: 70px;padding-right:5px;">查询类别：</label>
+              <div class="layui-input-block" style="margin-left:90px;">
+                <select 
+                id="searchType"
+                 class="layui-input" lay-filter="searchChange">
+             
+                </select> -->
+                                <label class="layui-form-label" style="width: 70px;padding-right:5px;">查询类别：</label>
+                                <div class="layui-input-block" style="margin-left:90px;">
+                                    <select id="searchType" class="layui-input" lay-filter="searchChange">
+                  </select>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+
+                                <div class="layui-inline allsearch">
+                                    <label class="layui-form-label" style="width: 56px;padding-right:5px;">关键字：</label>
+                                    <div class="layui-input-block" style="margin-left:76px;">
+                                        <input id="guanjianzi" class="layui-input" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline btnsearch">
+                                <button class="layui-btn" lay-submit="" lay-filter="search" id="searchBtn">查询</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-card">
+                    <div class="layui-card-header">培训列表</div>
+                    <div class="layui-card-body">
+                        <table class="layui-hide" id="TableList" lay-filter="test-table-toolbar"></table>
+
+                        <script type="text/html" id="test-table-toolbar-toolbarDemo">
+                            <div class="layui-btn-container">
+                                {{# if(!userid){ }}{{# if(limitConfig("storeLimt_rsgl", 2)){ }}
+                                <button class="layui-btn layui-btn-sm changethisData" lay-event="addInfo">添加</button>{{# } }}{{# if(limitConfig("storeLimt_rsgl", 3)){ }}
+                                <button class="layui-btn layui-btn-danger layui-btn-sm delthisData" lay-event="removeAll">批量删除</button>{{# } }}{{# } }}
+                                <!--<button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>-->
+                                <!--<button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>-->
+                                <!--<button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>-->
+                            </div>
+                        </script>
+
+                        <script type="text/html" id="test-table-toolbar-barDemo">
+                            {{# if(!userid && limitConfig("storeLimt_rsgl", 2)){ }}
+                            <a class="layui-btn layui-btn-xs changethisData" lay-event="edit">编辑</a>{{# } }}
+                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="Tomobilize">详情</a> {{# if(!userid && limitConfig("storeLimt_rsgl", 3)){ }}
+                            <a class="layui-btn layui-btn-danger layui-btn-xs delthisData" lay-event="del">删除</a>{{# } }}
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="addOrganizer" style="display:none">
+        <form class="layui-form">
+            <div class="layui-tab-content">
+                <div style="">
+                    培训管理
+                    <hr>
+                    <!-- <p class="site-tips">合同信息</p> -->
+                    <div class="layui-form-item" style="margin-top:20px;">
+                        <label class="layui-form-label">职位名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="PositionName" id="PositionName" style="width:90%;" autocomplete="off" placeholder="" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" style="margin-top:20px;">
+                        <label class="layui-form-label">职位描述</label>
+                        <div class="layui-input-block">
+                            <textarea placeholder="请输入内容" style="width:423px;" name="PositionDescribe" id="PositionDescribe" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-input-block">
+                <div class="layui-footer" style="left:0px;">
+                    <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="yzm" style="display: none;">
+        <div id="mpanel2"></div>
+        <button type="button" id="check-btn" class="verify-btn">确定</button>
+    </div>
+
+
+</body>
+<script src="../../../layuiadmin/layui/layui.js"></script>
+<script src="../../../../js/SysJS/store.min.js"></script>
+<script src="../../../../Widget/verify/js/jquery.min.js"></script>
+<script src="../../../../Widget/verify/js/verify.js"></script>
+<script src="../../../../js/SysJS/HrDataManage.js"></script>
+<script src="../../../../js/SysJS/limit.js"></script>
+<script src="../../../../js/views/Hr_Train/TrainManage.js"></script>
+
+<!--<script src="../../../../js/SysJS/allSelectJson.js"></script>-->
+
+<script type="text/html" id="TrainName">
+    {{ QueryKeyColor(String(d['TrainName']),"guanjianzi") }}
+</script>
+<script type="text/html" id="TrainChannel">
+    {{ QueryKeyColor(d['TrainChannel'],'guanjianzi') }}
+</script>
+<script type="text/html" id="TrainSfape">
+    {{ QueryKeyColor(d['TrainSfape'],'guanjianzi') }}
+</script>
+<script type="text/html" id="HostDep">
+    {{ QueryKeyColor(d['HostDep'],'guanjianzi') }}
+</script>
+<script type="text/html" id="TrainTeacher">
+    {{ QueryKeyColor(d['TrainTeacher'],'guanjianzi') }}
+</script>
+<script type="text/html" id="PlanPeopleCount">
+    {{ QueryKeyColor(d['PlanPeopleCount'],'guanjianzi') }}
+</script>
+<script type="text/html" id="TrainPlace">
+    {{ QueryKeyColor(d['TrainPlace'],'guanjianzi') }}
+</script>
+<script type="text/html" id="CourseTime">
+    {{ QueryKeyColor(d['CourseTime'],'guanjianzi') }}
+</script>
+
+</html>

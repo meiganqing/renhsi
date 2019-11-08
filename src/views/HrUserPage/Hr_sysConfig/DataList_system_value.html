@@ -1,0 +1,76 @@
+<!--
+ * @陕西唐远
+ * @文件名: DataList_system_value.html
+ * @作者: 张黎博
+ * @Git: zlb
+ * @Date: 2019-10-24 12:04:02
+ * @描述: 系统项配置列表页html
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>系统项配置</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="../../../../Widget/verify/css/verify.css" media="all">
+
+    <style>
+        #yzm {
+            width: 70%;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">配置列表</div>
+                    <div class="layui-card-body">
+                        <table class="layui-hide" id="TableList" lay-filter="test-table-toolbar"></table>
+                        <script type="text/html" id="test-table-toolbar-toolbarDemo">
+                            <div class="layui-btn-container">
+                                {{# if(limitConfig("storeLimt_rsgl", 2)){ }}
+                                <button class="layui-btn layui-btn-sm userLimit-btn-edit" lay-event="addInfo">添加</button>{{# } }} {{# if(limitConfig("storeLimt_rsgl", 3)){ }}
+                                <button class="layui-btn layui-btn-sm layui-btn-danger userLimit-btn-delete" lay-event="removeAll">批量删除</button>{{# } }}
+                            </div>
+                        </script>
+                        <script type="text/html" id="test-table-toolbar-barDemo">
+                            {{# if(limitConfig("storeLimt_rsgl", 2)){ }}
+                            <a class="layui-btn layui-btn-xs userLimit-btn-edit" lay-event="edit">编辑</a>{{# } }} {{# if(limitConfig("storeLimt_rsgl", 3)){ }}
+                            <a class="layui-btn layui-btn-danger layui-btn-xs userLimit-btn-delete" lay-event="del">删除</a>{{# } }}
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="yzm" style="display: none;">
+        <div id="mpanel2"></div>
+        <button type="button" id="check-btn" class="verify-btn">确定</button>
+    </div>
+
+
+
+    <script src="../../../layuiadmin/layui/layui.js"></script>
+    <script src="../../../../js/SysJS/store.min.js"></script>
+    <script src="../../../../Widget/verify/js/jquery.min.js"></script>
+    <script src="../../../../Widget/verify/js/verify.js"></script>
+    <script src="../../../../js/SysJS/HrDataManage.js"></script>
+    <script src="../../../../js/SysJS/limit.js"></script>
+    <script src="../../../../js/views/Hr_sysConfig/DataList_system_value.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<title>5款实用的jQuery验证码插件</title>
+
+<link rel="stylesheet" type="text/css" href="css/verify.css">
+
+</head>
+<body><script src="/demos/googlegg.js"></script>
+
+
+<div id="mpanel2" >
+</div>
+
+<button type="button" id="check-btn" class="verify-btn">确定</button>
+
+
+
+
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/verify.js" ></script>
+<script type="text/javascript">
+	$('#mpanel2').codeVerify({
+		type : 1,
+		width : '400px',
+		height : '50px',
+		fontSize : '30px',
+		codeLength : 6,
+		btnId : 'check-btn',
+		ready : function() {
+		},
+		success : function() {
+			alert('验证匹配！');
+		},
+		error : function() {
+			alert('验证码不匹配！');
+		}
+	});
+	
+</script>
+
+
+</body>
+</html>

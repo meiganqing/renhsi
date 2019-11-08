@@ -1,0 +1,292 @@
+<!--
+ * @陕西唐远
+ * @文件名: 
+ * @作者: 李浩源
+ * @Git: e
+ * @Date: 2019-10-24 14:12:00
+ * @描述: 
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>薪资项目</title>
+  	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  	<meta name="viewport" content../x="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  	<link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  	<style>
+  		.lf{
+  			float: left;
+  		}
+  		.clear{
+  			clear: both;
+  		}
+  	</style>
+</head>
+<body>
+	<div class="layui-fluid">
+	  <div class="layui-row layui-col-space15">
+	    <div class="layui-col-md12">
+		    <div class="layui-card">
+		     	<div class="layui-card-body">
+		     		<form class="layui-form">
+						<!-- <div class="layui-card-header">
+							<p style="margin-top:9px;margin-right:20px;" class="lf">显示设置</p>
+			     			<div class="lf" style="width:210px">
+			     				<input type="checkbox" name="zzz" value="1" lay-skin="switch" lay-text="是|否">
+			     			 	<label style="float: right; margin-top: 9px;" class="">是否显示在工资计算中</label>
+			     			</div>
+			     			<div class="clear"></div>
+						</div> -->
+						<div class="layui-card-body">
+									
+								<fieldset class="layui-elem-field layui-field-title">
+										<legend>信息添加：</legend>
+								  </fieldset>
+								  <div class="" style="margin-bottom:20px;">
+							
+		
+									<div class="layui-inline" style="margin-bottom:20px">
+										添加年度：
+										<div class="layui-inline">
+											  <input type="text" 
+											  autocomplete="off
+											  "class="layui-input" 
+											  name="XDLM年度"
+											  id="年度">
+										</div>
+									</div>
+									<div class="layui-inline" style="margin-bottom:20px;margin-left: 15%;">
+											添加人员：
+											<div class="layui-inline">
+													<select 
+													autocomplete="off"
+													lay-filter="text" 
+													name="XDLM添加人"
+													id="添加人">
+														
+													</select>
+												
+											</div>
+										</div>
+
+									<div class="layui-inline " style="margin-bottom:20px;margin-left:15%;display: none;">
+											添加时间：
+											<div class="layui-inline">
+												  <input type="text" 
+												  autocomplete="off"class="layui-input" 
+												  name="XDLM添加时间"id="添加时间">
+											</div>
+										</div>
+								</div>
+								<div class="" style="margin-bottom:20px;">
+									
+								
+								<div>
+								
+							<fieldset class="layui-elem-field layui-field-title">
+				              	<legend>社保基数名称：</legend>
+				            </fieldset>
+				            <div class="" style="margin-bottom:20px;">
+									基数名称：
+								<div class="layui-inline">
+									  <input type="text" class="layui-input" 
+									  name="XDLM社保基数名称"
+									  autocomplete="off"
+									  id="社保基数名称">
+								</div>
+							</div>
+					
+						
+				            <fieldset class="layui-elem-field layui-field-title">
+				              	<legend>养老保险系数：</legend>
+				            </fieldset>
+
+
+
+				            <div class="" style="margin-bottom:20px;">
+				            	个人支付：
+								<div class="layui-inline">
+									  <input type="number" class="layui-input" 
+									  autocomplete="off"
+									  name="XDLM养老保险系数_个人"
+									  id="养老保险系数_个人">
+								</div>
+								<label>%&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<!-- <div class="layui-inline">
+								  	<input type="text" class="layui-input" id="">
+								</div> -->
+				            </div>
+				            <div class="" style="margin-bottom:20px;">
+				            	单位支付：
+								<div class="layui-inline">
+									  <input type="number" class="layui-input"  
+									  autocomplete="off" name="XDLM养老保险系数_单位"
+									  id="养老保险系数_单位">
+								</div>
+								<label>%&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<!-- <div class="layui-inline">
+								  	<input type="text" class="layui-input" id="">
+								</div> -->
+				            </div>
+
+
+
+				            <fieldset class="layui-elem-field layui-field-title">
+				              	<legend>医疗保险系数：</legend>
+				            </fieldset>
+				            <div class="" style="margin-bottom:20px;">
+				            	个人支付：
+								<div class="layui-inline">
+										<input type="number" 
+										autocomplete="off"class="layui-input"   name="XDLM医疗保险系数_个人"
+										id="医疗保险系数_个人">
+								</div>
+								<label>%&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<!-- <div class="layui-inline">
+								  	<input type="text" class="layui-input" id="">
+								</div> -->
+				            </div>
+				            <div class="" style="margin-bottom:20px;">
+				            	单位支付：
+								<div class="layui-inline">
+										<input type="number" class="layui-input"  
+										autocomplete="off"
+										 name="XDLM医疗保险系数_单位"
+										id="医疗保险系数_单位">
+								</div>
+								<label>%&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<!-- <div class="layui-inline">
+								  	<input type="text" class="layui-input" id="">
+								</div> -->
+				            </div>
+
+
+				            <fieldset class="layui-elem-field layui-field-title">
+				              	<legend>失业保险系数：</legend>
+				            </fieldset>
+				            <div class="" style="margin-bottom:20px;">
+				            	个人支付：
+								<div class="layui-inline">
+										<input type="number" class="layui-input" 
+										autocomplete="off"
+										  name="XDLM失业保险系数_个人"
+										id="失业保险系数_个人">
+								</div>
+								<label>%&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<!-- <div class="layui-inline">
+								  	<input type="text" class="layui-input" id="">
+								</div> -->
+				            </div>
+				            <div class="" style="margin-bottom:20px;">
+				            	单位支付：
+								<div class="layui-inline">
+										<input type="number" 
+										autocomplete="off"
+										class="layui-input"   name="XDLM失业保险系数_单位"
+										id="失业保险系数_单位">
+								</div>
+								<label>%&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<!-- <div class="layui-inline">
+								  	<input type="text" class="layui-input" id="">
+								</div> -->
+				            </div>
+
+
+
+				            <fieldset class="layui-elem-field layui-field-title">
+				              	<legend>住房公积金系数：</legend>
+				            </fieldset>
+				            <div class="" style="margin-bottom:20px;">
+				            	个人支付：
+								<div class="layui-inline">
+										<input type="number" 
+										autocomplete="off"class="layui-input"   name="XDLM住房公积金系数_个人"
+										id="住房公积金系数_个人">
+								</div>
+								<label>%&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<!-- <div class="layui-inline">
+								  	<input type="text" class="layui-input" id="">
+								</div> -->
+				            </div>
+				            <div class="" style="margin-bottom:20px;">
+				            	单位支付：
+								<div class="layui-inline">
+										<input type="number" class="layui-input"   autocomplete="off"
+										
+										name="XDLM住房公积金系数_单位"
+										id="住房公积金系数_单位">
+								</div>
+								<label>%&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<!-- <div class="layui-inline">
+									  <input type="text" 
+									  class="layui-input" 
+									  id="">
+								</div> -->
+				            </div>
+
+
+				            <fieldset class="layui-elem-field layui-field-title">
+				              	<legend>工伤保险系数：</legend>
+				            </fieldset>
+				            <div class="" style="margin-bottom:20px;">
+				            	单位支付：
+								<div class="layui-inline">
+										<input type="number" 
+										autocomplete="off"class="layui-input"   name="XDLM工伤保险系数_单位"
+										id="工伤保险系数_单位">
+								</div>
+								<label>%&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<!-- <div class="layui-inline">
+								  	<input type="text" class="layui-input" id="">
+								</div> -->
+				            </div>
+				            
+
+
+
+
+				            <fieldset class="layui-elem-field layui-field-title">
+				              	<legend>生育保险系数：</legend>
+				            </fieldset>
+				            <div class="" style="margin-bottom:20px;">
+				            	单位支付：
+								<div class="layui-inline">
+										<input type="number" 
+										autocomplete="off"
+										class="layui-input"   name="XDLM生育保险系数_单位"
+										id="生育保险系数_单位">
+								</div>
+								<label>%&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<!-- <div class="layui-inline">
+								  	<input type="text" class="layui-input" id="">
+								</div> -->
+				            </div>
+				           
+						</div>
+						<div class="layui-form-item layui-layout-admin">
+							<div class="layui-input-block">
+								<div class="layui-footer" style="left:0">
+									<button id="SubmitBtn" type="button" class="layui-btn" lay-submit lay-filter="formSubmit">立即提交</button>
+									<button class="layui-btn layui-btn-primary">重置</button>
+								</div>
+							</div>
+						</div>
+						
+		     		</form>
+		     	</div>
+		    </div>
+	  </div>
+	</div>
+	
+</body>
+<script src="../../../layuiadmin/layui/layui.js"></script>
+<script src="../../../../js/SysJS/store.min.js"></script>
+<script src="../../../../js/SysJS/HrDataManage.js"></script>
+
+<script src="../../../../js/views/Hr_Salary/safetyFactor_add.js"></script>
+</html>

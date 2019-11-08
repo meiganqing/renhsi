@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>添加员工</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <style type="text/css">
+    .addUserInfo {
+      background: #f2f2f2;
+    }
+
+    .addUserInfo > form {
+      background: #fff;
+    }
+
+    .addUserInfo .site-tips {
+      line-height: 36px;
+      border-left: 5px solid #009E94;
+      margin: 15px 0 5px;
+      padding: 0 10px;
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body layadmin-themealias="default">
+<div class="addUserInfo layui-fluid">
+  <form class="layui-form">
+    <!-- <input type="hidden" name="id" id="id"> -->
+    <div class="layui-tab-content">
+      <div >
+    
+        工作经历
+        <hr>
+        <div class="layui-form-item" style="margin-top:20px;width:90%;" >
+          <div class="layui-inline">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-inline">
+              <select name="XDLMUserName" lay-search id="UserName" class="layui-input"></select>
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">工作年限</label>
+            <div class="layui-input-inline">
+              <select name="XDLMWorkYears" id="WorkYears" class="layui-input">
+          
+              </select>
+  
+            </div>
+          </div>
+        </div>
+
+        <div class="layui-form-item" style="width:81%;" >
+          <label class="layui-form-label">公司</label>
+          <div class="layui-input-block">
+            <input type="text" name="XDLMCompany" id="Company"  lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+          </div>
+        </div>
+
+        <div class="layui-form-item" style="width:81%;" >
+          <label class="layui-form-label">职位</label>
+          <div class="layui-input-block">
+              <select name="XDLMPosition" id="Position" class="layui-input">
+          
+                </select>
+            <!-- <input type="text"   lay-verify="title" autocomplete="off" placeholder="" class="layui-input"> -->
+          </div>
+        </div>
+
+
+        <div class="layui-form-item" style="width:90%;" >
+          <div class="layui-inline">
+            <label class="layui-form-label">入职时间</label>
+            <div class="layui-input-inline">
+              <input name="XDLMEntryTime" id="EntryTime" placeholder="yyyy-MM-dd" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">离职时间</label>
+            <div class="layui-input-inline">
+              <input name="XDLMQuitTime" id="QuitTime" placeholder="yyyy-MM-dd" class="layui-input">
+            </div>
+          </div>
+        </div>
+        <div class="layui-form-item" style="width:81%;" >
+          <label class="layui-form-label">备注</label>
+          <div class="layui-input-block">
+            <textarea name="XDLMRemarks" id="Remarks" class="layui-textarea Nolang"></textarea>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layui-form-item layui-layout-admin" style="margin-top:20px;">
+      <div class="layui-input-block">
+        <div class="layui-footer" style="left:0px;">
+          <button id="SubmitBtn" type="button" class="layui-btn" lay-submit lay-filter="formSubmit">立即提交</button>
+          <button id="CancelBtn" onclick="closeWindow()" type="button" class="layui-btn layui-btn-primary">取消</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</body>
+
+<!-- 弹出员工资料 -->
+
+<script src="../../../layuiadmin/layui/layui.js"></script>
+<script src="../../../../js/SysJS/store.min.js"></script>
+<script src="../../../../Widget/verify/js/jquery.min.js"></script>
+<script src="../../../../js/SysJS/HrDataManage.js"></script>
+<script src="../../../../js/views/Hr_User/WorkExperience_Add.js"></script>
+<script src="../../../../js/SysJS/allSelectJson.js"></script>
+<script type="text/javascript">
+
+
+</script>
+</html>

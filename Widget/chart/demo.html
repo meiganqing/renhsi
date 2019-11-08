@@ -1,0 +1,199 @@
+<!--
+ * @陕西唐远
+ * @文件名: demo.html
+ * @作者: 张黎博
+ * @Git: zlb
+ * @Date: 2019-10-24 12:04:00
+ * @描述: 部门结构图html
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> -->
+    <title>demo</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <link rel="stylesheet" href="./jquery.jOrgChart.css" />
+    <link rel="stylesheet" href="./custom.css" />
+    <link href="./prettify.css" type="text/css" rel="stylesheet" />
+
+    <script type="text/javascript" src="prettify.js"></script>
+
+    <!-- jQuery includes -->
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-ui.min.js"></script>
+
+    <script src="jquery.jOrgChart.js"></script>
+    <!-- <script src="./html2canvas.min.js"></script>
+
+    <script src="./canvas2image.js"></script>
+    <script src="./base64.js"></script> -->
+    <!-- <script>
+        jQuery(document).ready(function() {
+            $("#org").jOrgChart({
+                chartElement: '#chart',
+                dragAndDrop: true
+            });
+            // 进行canvas生成
+            // btnSave.onclick = function() {
+            //     // var btnSave = document.getElementById("btnSave");
+            //     // 获取内容id
+            //     var content = document.getElementById("chart");
+            //     html2canvas(content, {
+            //         allowTaint: true,
+            //         taintTest: false,
+            //         onrendered: function(canvas) {
+            //             //添加属性
+            //             canvas.setAttribute('id', 'thecanvas');
+            //             //读取属性值
+            //             // var value= canvas.getAttribute('id');
+            //             var oCanvas = document.getElementById("thecanvas");
+            //             document.getElementById('images').appendChild(canvas);
+
+            //             // var img_data1 = Canvas2Image.saveAsPNG(oCanvas, true).getAttribute('src');
+            //             // saveFile(img_data1, 'abc');
+
+            //         }
+            //     });
+            // }
+
+
+            // var saveFile = function(data, filename) {
+            //     var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+            //     save_link.href = data;
+            //     save_link.download = filename;
+
+            //     var event = document.createEvent('MouseEvents');
+            //     event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+            //     save_link.dispatchEvent(event);
+            // };
+        });
+    </script> -->
+</head>
+
+
+<body onload="prettyPrint();">
+
+
+    <ul id="org" style="display:none">
+        <li id="orgli">
+
+        </li>
+
+    </ul>
+
+    <div id="chart" class="orgChart"></div>
+    <!-- <button id="btnSave">保存</button> -->
+    <!-- <div id="images"></div> -->
+    <script src="../../js/SysJS/HrDataManage.js"></script>
+
+    <script>
+        // 树形数据请求
+        function PostDatashu(requestData, callback) { //异步的ajax请求
+            var rv;
+            try {
+                $.ajax({
+                    async: true,
+                    cache: false,
+                    type: "post",
+                    url: httpcom_YHGL,
+                    data: requestData, // $('#mkufang').val() 
+                    dataType: 'text',
+                    headers: {
+                        Authorization: getAuth()
+                    },
+                    success: function(returnData) {
+
+                        if (returnData.length > 1) {
+
+                            if (callback) {
+                                callback(returnData)
+                            }
+                            rv = returnData
+                        } else {
+                            rv = returnData.message;
+                            if (rv == "NOTLOGIN") {
+
+                                // parent.location.href = baseUrl + "/login.html"
+
+                            } else {
+                                // layer.msg(rv)
+                            }
+                        }
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+                        rv = XMLHttpRequest.responseText;
+                        // layer.msg(rv)
+                    }
+                });
+            } catch (e) {
+
+                rv = e.message;
+            }
+        }
+        // 请求结构数据
+        PostDatashu({
+                XDLMCID: "2000",
+                XDLMSID: "DYBH2019110211483602069798",
+                XDLMTID: "2001"
+            }, function(data) {
+                if (data.length > 0) {
+                    $("#orgli").append("xx公司" + eachHtml(eval('(' + data.replace(/\n/g, "\\\\n") + ')'))); //插入拼接好的html
+                    $("#org").jOrgChart({
+                        chartElement: '#chart',
+                        dragAndDrop: true
+                    }); //进行canvas生成
+                }
+            })
+            // 拼接html为字符串
+        function eachHtml(arrk) {
+            // console.log(arrk)
+            let html = "<ul>";
+            for (let i = 0; i < arrk.length; i++) {
+                if (arrk[i].children && arrk[i].children.length > 0) {
+                    // console.log(arrk[i].children)
+                    html += '<li>' + arrk[i].name + eachHtml(arrk[i].children) + '</li>'
+                } else {
+                    html += '<li>' + arrk[i].name + '</li>'
+                }
+            }
+            html += '</ul>'
+            return html;
+        }
+
+
+        jQuery(document).ready(function() {
+            /* Custom jQuery for the example */
+            $("#show-list").click(function(e) {
+                e.preventDefault();
+                $('#list-html').toggle('fast', function() {
+                    if ($(this).is(':visible')) {
+                        $('#show-list').text('Hide underlying list.');
+                        $(".topbar").fadeTo('fast', 0.9);
+                    } else {
+                        $('#show-list').text('Show underlying list.');
+                        $(".topbar").fadeTo('fast', 1);
+                    }
+                });
+            });
+
+            $('#list-html').text($('#org').html());
+
+            $("#org").bind("DOMSubtreeModified", function() {
+                $('#list-html').text('');
+
+                $('#list-html').text($('#org').html());
+
+                prettyPrint();
+            });
+        });
+    </script>
+
+</body>
+
+</html>

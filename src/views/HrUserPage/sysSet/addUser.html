@@ -1,0 +1,107 @@
+<!--
+ * @陕西唐远
+ * @文件名: addUser.html 
+ * @作者: 张黎博
+ * @Git: zlb
+ * @Date: 2019-11-06 11:35:41
+ * @描述: 用户添加页
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!doctype html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+    <script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../../lib/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../../../../lib/js/store.min.js"></script>
+    <script src="./js/xdDataMange.js"></script>
+
+    <!--<script src="../../../../js/SysJS/HrDataManage.js"></script>-->
+    <script src="./js/addUser.js"></script>
+    <title></title>
+</head>
+
+<body>
+    <div class="layui-container" style="padding:35px;">
+
+        <form class="layui-form" action="" id="XMForm" method="post">
+            <input type="hidden" name="TblNum" value="7000">
+            <input type="hidden" name="XDLMID" id="XDLMID">
+            <input type="hidden" name="XDLMonlynum" id="onlynum">
+            <input type="hidden" name="XDLMisbmzr" id="isbmzr" value="0">
+            <input type="hidden" name="XDLMuserid" id="userid">
+            <!--<input type="hidden" name="XDLMisRecMsg"  id="isRecMsg" value="1">-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">登录名</label>
+                <div class="layui-input-block">
+                    <input type="text" id="mLoginName" name="XDLMmLoginName" placeholder="请输入登录名（提交后不可修改）" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">姓名</label>
+                <div class="layui-input-block">
+                    <input type="text" id="mUserName" name="XDLMmUserName" autocomplete="off" placeholder="请输入姓名" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码</label>
+                <div class="layui-input-block">
+                    <input type="password" id="mUserPassword" placeholder="（修改时若需修改密码直接输入）" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">身份</label>
+                <div class="layui-input-block">
+                    <select id="mIdentity" name="XDLMmIdentity" lay-search lay-filter="mIdentity">
+            <!-- <option value="工作人员">工作人员</option>
+            <option value="主任">主任</option>
+            <option value="副主任">副主任</option>
+            <option value="院长">院长</option>
+            <option value="副院长">副院长</option> -->
+        </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">电话</label>
+                <div class="layui-input-block">
+                    <input type="text" id="mPhone" name="XDLMmPhone" placeholder="请输入电话" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">部门</label>
+                <div class="layui-input-block">
+                    <select id="mDepart" name="XDLMmDepart" lay-verify="required" lay-search>
+        </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">禁用</label>
+                <div class="layui-input-block">
+                    <input id="isDisabled" type="checkbox" value="false" checked="" name="XDLMisDisabled" lay-skin="switch" lay-filter="switchTest" lay-text="是|否">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">接收通知消息</label>
+                <div class="layui-input-block">
+                    <input id="isRecMsg" type="checkbox" checked="" name="XDLMisRecMsg" lay-skin="switch" lay-filter="switchTest" lay-text="是|否">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button id="addUser" class="layui-btn" lay-submit lay-filter="XMForm">添加</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

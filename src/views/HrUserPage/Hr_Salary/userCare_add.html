@@ -1,0 +1,155 @@
+<!--
+ * @陕西唐远
+ * @文件名: 
+ * @作者: 李浩源
+ * @Git: e
+ * @Date: 2019-10-24 14:12:00
+ * @描述: 
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>rightCommon</title>
+	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  	<meta name="viewport" content../="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  	<link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+<link rel="stylesheet" href="../../../../js/pxgl/formSelects-v4.css">
+	  
+  	<style type="text/css">
+  		.layui-table-tool-self{
+  			position: absolute;
+  			right: 17px;
+    		top: 15px;
+  		}
+  		.layui-table-tool-self>.layui-inline{
+  			position: relative;
+		    /* width: 26px; */
+		    /* height: 26px; */
+		    padding: 5px;
+		    line-height: 16px;
+		    margin-right: 10px;
+		    text-align: center;
+		    color: #333;
+		    border: 1px solid #ccc;
+		    cursor: pointer;
+		    -webkit-transition: .5s all;
+		    transition: .5s all;
+  		}
+  	
+  		.addUserInfo  .layui-input-inline{
+  			width: 150px;
+  		}
+  		.addUserInfo .site-tips{
+  			line-height: 36px;
+		    border-left: 5px solid #009E94;
+		    margin: 15px 0 5px;
+		    padding: 0 10px;
+		    background-color: #f2f2f2;
+  		}
+  		html{
+  			background: #fff;
+  		}
+		  .layui-form-label{
+			  display: flex;
+			  align-items: center;
+		  }
+  	</style>
+</head>
+<body layadmin-themealias="default">
+	<div id="changePosition" class="layui-fluid">
+		人员关怀
+		<hr>
+		<form class="layui-form" id="TrainAdd" lay-filter="formData">
+			<div class="layui-form-item" >
+			    <label class="layui-form-label">
+					<div style="color: red;line-height: 20px;">*</div><div>所在部门</div></label>
+				<div class="layui-input-block" style=" position: relative;">
+					<div style="position: absolute;width: 100%;height: 100%;z-index: 2;" class="layui-disabled layui-hide">
+					</div>
+					
+					  <select 
+					  name="XDLMDepName" 
+					  id="DepName" 
+					  lay-search
+					  lay-filter="department"  
+					   lay-verify="required"
+					     ></select>
+				</div>
+			</div>
+			<div class="layui-form-item" >
+			    <label class="layui-form-label"><div style="color: red;line-height: 20px;">*</div><div>被关怀员工</div></label>
+				<div class="layui-input-block">
+					<select name="XDLMCareUserName" 
+					lay-search lay-verify="required" 
+					lay-filter="usercareId" id="CareUserName"></select>
+				</div>
+			</div>
+			<div class="layui-form-item" >
+			    <label class="layui-form-label">关怀类型</label>
+				<div class="layui-input-block">
+					<select name="XDLMCareType" id="CareType"></select>
+				</div>
+			</div>
+			
+			<div class="layui-form-item" >
+			    <label class="layui-form-label">关怀时间</label>
+				<div class="layui-input-block">
+			        <input type="text" name="XDLMCareTime" id="CareTime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item" >
+			    <label class="layui-form-label"><div style="color: red;line-height: 20px;">*</div><div>关怀开支</div></label>
+				<div class="layui-input-block">
+					<input type="number" 
+					lay-verify="required|number" 
+					name="XDLMCost" id="Cost" 
+					placeholder="请输入所花资金"
+					 autocomplete="off"
+					 class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item" >
+				<label class="layui-form-label"><div style="color: red;line-height: 20px;">*</div><div>参与人员</div></label>
+				<div class="layui-input-block">
+					<select name="XDLMJoinUser"
+					id="JoinUser" 
+					lay-verify="required" 
+					xm-select="JoinUser" 
+					xm-select-direction="auto" 
+					xm-select-search="" ></select>
+				</div>
+			</div>
+			
+			<div class="layui-form-item layui-layout-admin" style="margin-top:20px;">
+			    <div class="layui-input-block">
+			    	<div class="layui-footer" style="left:0px;">
+			    		<button class="layui-btn" id="TrainManageAddBtn" lay-submit=""  lay-filter="TrainBtn">立即提交</button>
+			      		<button type="reset" class="layui-btn layui-btn-primary" onclick="closeWindow()">取消</button>
+			    	</div>
+			    </div>
+			</div>
+			
+		</form>
+	</div>
+</body>
+<!-- 弹出调动 -->
+
+<script src="../../../layuiadmin/layui/layui.js"></script>
+<script type="text/javascript" src="../../../../Widget/uploadImage/jquery-1.8.3.min.js"></script>
+<script src="../../../../js/SysJS/store.min.js"></script>
+<script src="../../../../js/SysJS/HrDataManage.js"></script>
+<script src="../../../../js/SysJS/allSelectJson.js"></script>
+<script src="../../../../js/pxgl/formSelects-v4.min.js"></script>
+<script src="../../../../js/views/Hr_Salary/userCare_add.js"></script>
+<script type="text/javascript" src="../../../../Widget/uploadImage/upload.js"></script>
+<script type="text/javascript">
+
+
+
+</script>
+</html>

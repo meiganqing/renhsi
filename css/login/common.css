@@ -1,0 +1,68 @@
+p,h1,h2,h3,h4,h5,h6,ul,ol,li,dd,pre{
+	margin:0;
+	padding:0;
+	list-style: none;
+}
+body{
+	margin:0;
+	font:13px "Microsoft YaHei",Arail,Helvetica,sans-serif;
+	color:#666;
+}
+html{
+    height: 100%;
+    width: 100%;
+}
+*{
+	box-sizing: border-box;
+    -moz-user-select: none; /*火狐*/
+    -webkit-user-select: none;  /*webkit浏览器*/
+    -ms-user-select: none;   /*IE10*/
+    -khtml-user-select: none; /*早期浏览器*/
+    user-select: none;
+}
+a{
+	color:#333;
+	text-decoration: none;
+}
+a:hover{
+	cursor:pointer;
+	/*color: #E51B24;*/
+}
+img{
+	vertical-align: middle;
+	cursor:pointer;
+}
+.br{
+	border-radius:50%;
+}
+.clear:after{
+	content:"";
+	display: block;
+	clear: both;
+}
+.lf{
+	float: left;
+}
+.rt{
+	float: right;
+}
+input{
+	outline:0;
+}
+.one{
+    font-size: 16px;
+    color:#343434;
+}
+.two{
+    font-size: 14px;
+    color:#343434;
+}
+.hide{
+	display: none!important;
+}
+.hid{
+	display: none;
+}
+[cloak]{
+	display: none;
+}

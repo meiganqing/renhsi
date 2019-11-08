@@ -1,0 +1,180 @@
+<!--
+ * @陕西唐远
+ * @文件名: Contract_Add.html
+ * @作者: 张黎博
+ * @Git: zlb
+ * @Date: 2019-10-24 12:04:02
+ * @描述: 合同管理添加页html
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="../../../../css/upload.css" />
+    <style type="text/css">
+        .addUserInfo .layui-input-inline {
+            width: 220px;
+        }
+        
+        .addUserInfo {
+            background: #f2f2f2;
+        }
+        
+        .addUserInfo>form {
+            background: #fff;
+        }
+        
+        .addUserInfo .site-tips {
+            line-height: 36px;
+            border-left: 5px solid #009E94;
+            margin: 15px 0 5px;
+            padding: 0 10px;
+            background-color: #f2f2f2;
+        }
+        
+        .addUserInfo .layui-inline {
+            margin-top: 20px;
+        }
+        
+        .layui-form-label {
+            width: 100px;
+        }
+    </style>
+
+</head>
+
+<body layadmin-themealias="default">
+    <div class="addUserInfo layui-fluid">
+        <form class="layui-form" lay-filter="addContract" style="min-height:85vh">
+            <input type="hidden" name="XDLMContractCode" id="ContractCode">
+            <input type="hidden" name="XDLMUserId" id="UserId">
+            <div class="layui-tab-content">
+                <div style="">
+                    合同管理
+                    <hr>
+                    <!-- <p class="site-tips">合同信息</p> -->
+                    <div class="layui-form-item" style="margin-top:20px;">
+                        <label class="layui-form-label">姓名</label>
+                        <div class="layui-input-block" style="margin-left:132px;">
+                            <select type="text" name="XDLMUserName" id="UserName" lay-verify="title" class="layui-input" lay-filter="UserName" lay-search></select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item" style="margin-top:20px;">
+                        <label class="layui-form-label">合同类型</label>
+                        <div class="layui-input-block" style="margin-left:132px;">
+                            <select name="XDLMContractType" id="ContractType" lay-filter="Trepetition" lay-search>
+                <!-- <option value="1">录用合同</option>
+                <option value="2">使用合同</option> -->
+              </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">签订日期</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="XDLMContractSignTime" id="ContractSignTime" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">生效日期</label>
+                            <div class="layui-input-inline">
+                                <div class="layui-input-inline">
+                                    <input type="text" name="XDLMContractBegTime" id="ContractBegTime" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">到期日期</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="XDLMContractEndTime" id="ContractEndTime" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">试用到期日期</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="XDLMOnTrialEndTime" id="OnTrialEndTime" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">附件
+                                        <button type="button" class="layui-btn layui-btn-xs" id="uploadImg">上传</button>
+                                </label>
+                        <div class="layui-input-block">
+                            <div class="pictue-module" id="pictueModule">
+
+                                <div class="build-file-module layui-row" id="">
+                                    <ul id="imgContent">
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">附件</label>
+                        <div class="layui-input-block">
+                            <div class="layui-upload">
+                                <button type="button" class="layui-btn" id="changefileFJ">
+                              <i class="layui-icon">&#xe67c;</i>上传文件
+                            </button>
+                                <button type="button" class="layui-btn echo-show layui-hide" id="setImportPic">
+                              <i class="layui-icon">&#xe620;</i>设置主图
+                            </button>
+                                <input type="hidden" id="fj">
+                                <div class="layui-upload-list">
+                                    <table class="layui-table">
+                                        <thead>
+                                            <th>缩略图</th>
+                                            <th>文件名</th>
+                                            <th>上传进度</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                        </thead>
+                                        <tbody id="showfileFJ" allSrc="">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div> -->
+
+                </div>
+
+            </div>
+            <div class="layui-form-item layui-layout-admin" style="margin-top:20px;">
+                <div class="layui-input-block">
+                    <div class="layui-footer" style="left:0px;">
+                        <button id="submit" type="button" class="layui-btn" lay-submit="submit" lay-filter="submit">添加</button>
+                        <button id="CancelBtn" onclick="closeWindow()" type="button" class="layui-btn layui-btn-primary">取消</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+<!-- 弹出员工资料 -->
+
+<script src="../../../layuiadmin/layui/layui.js"></script>
+<script src="../../../../js/SysJS/HrDataManage.js"></script>
+<script src="../../../../Widget/verify/js/jquery.min.js"></script>
+<script src="../../../../js/SysJS/store.min.js"></script>
+<script src="../../../../js/views/Hr_User/Contract_Add.js"></script>
+<!-- <script src="../../../../js/SysJS/allSelectJson.js"></script> -->
+<script src="../../../../Widget/uploadImage/upload.js"></script>
+<script type="text/javascript">
+</script>
+
+</html>

@@ -1,0 +1,67 @@
+<!--
+ * @陕西唐远
+ * @文件名: OrganizerManage_add.html
+ * @作者: 张黎博
+ * @Git: zlb
+ * @Date: 2019-10-24 12:04:02
+ * @描述: 组织管理添加页html
+ * @版本: 1.00
+ * @修改历史纪录: （版本 修改时间 修改人 修改内容）
+ * @记录:  
+ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>组织管理</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content../="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+    <style type="text/css">
+        .layui-form-select dl {
+            max-height: 170px;
+        }
+    </style>
+</head>
+
+
+<body style="background:#fff;height:100vh">
+
+    <div class="addOrganizer">
+        <form class="layui-form">
+            <input type="hidden" name="XDLM分类id" id="分类id" class="layui-input">
+            <!-- <input type="hidden" name="XDLM分类名" id="分类名" class="layui-input"> -->
+            <input type="hidden" name="XDLM父类id" id="父类id" class="layui-input">
+            <div class="layui-tab-content">
+                <div style="">
+                    部门管理
+                    <hr>
+                    <!-- <p class="site-tips">合同信息</p> -->
+                    <div class="layui-form-item" style="margin-top:20px;">
+                        <label class="layui-form-label">部门名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="XDLMDepartName" id="DepartName" style="width:90%;" lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-input-block">
+                <div class="layui-footer" style="left:0px;">
+                    <button id="submit" type="button" class="layui-btn" lay-submit="submit" lay-filter="submit">添加</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+<script src="../../../layuiadmin/layui/layui.js"></script>
+<script src="../../../../Widget/jquery-1.8.3.min.js"></script>
+<script src="../../../../js/SysJS/store.min.js"></script>
+<script src="../../../../js/SysJS/HrDataManage.js"></script>
+<script src="../../../../js/views/Hr_Organize/OrganizerManage_add.js"></script>
+
+</html>
